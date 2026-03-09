@@ -1,0 +1,14 @@
+{
+  "name": "Novo",
+  "title": "Frontend Developer | Next.js Specialist",
+  "tagline": "Building fast, scalable, and elegant web applications with modern technologies.",
+  "statusText": "Available for work",
+  "ctaPrimary": {
+    "label": "View Projects",
+    "href": "#projects"
+  },
+  "ctaSecondary": {
+    "label": "Contact Me",
+    "href": "#contact"
+  }
+}
