@@ -1,0 +1,27 @@
+{
+  "sectionLabel": "03 — Projects",
+  "heading": "Selected work",
+  "projects": [
+    {
+      "title": "TaskaTask",
+      "description": "A cross-platform task management app built with React Native and Expo, featuring Redux Toolkit with entity adapters for efficient state management.",
+      "stack": ["React Native", "Expo", "Redux Toolkit", "TypeScript"],
+      "github": "#",
+      "live": "#"
+    },
+    {
+      "title": "Admin Dashboard",
+      "description": "A comprehensive admin panel built with Next.js featuring real-time data visualization, user management, and role-based access control.",
+      "stack": ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+      "github": "#",
+      "live": "#"
+    },
+    {
+      "title": "Real-time Messaging System",
+      "description": "A real-time complaint and messaging system with live notifications, message threading, and admin review workflows.",
+      "stack": ["React", "Node.js", "WebSocket", "PostgreSQL"],
+      "github": "#",
+      "live": "#"
+    }
+  ]
+}

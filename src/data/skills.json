@@ -1,0 +1,21 @@
+{
+  "sectionLabel": "02 — Skills",
+  "heading": "Technologies I work with",
+  "groups": [
+    {
+      "title": "Frontend",
+      "icon": "Code2",
+      "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux Toolkit"]
+    },
+    {
+      "title": "Backend",
+      "icon": "Server",
+      "skills": ["Node.js", "REST APIs", "PostgreSQL"]
+    },
+    {
+      "title": "Tools",
+      "icon": "Wrench",
+      "skills": ["Git", "Vercel", "Docker", "AWS"]
+    }
+  ]
+}

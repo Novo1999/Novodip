@@ -1,0 +1,18 @@
+{
+  "sectionLabel": "04 — Experience",
+  "heading": "Where I've worked",
+  "experiences": [
+    {
+      "role": "Frontend Developer",
+      "company": "Freelance / Contract",
+      "period": "2023 — Present",
+      "description": "Building scalable web applications with Next.js and React. Focused on performance optimization, clean architecture, and delivering polished user experiences for clients."
+    },
+    {
+      "role": "Web Developer",
+      "company": "Projects & Open Source",
+      "period": "2022 — 2023",
+      "description": "Developed multiple full-stack applications including admin dashboards, real-time messaging systems, and mobile apps using React Native and Expo."
+    }
+  ]
+}

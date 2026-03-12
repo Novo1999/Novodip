@@ -1,0 +1,9 @@
+{
+  "sectionLabel": "01 — About",
+  "heading": "Crafting digital experiences with precision",
+  "paragraphs": [
+    "I'm a frontend developer passionate about building modern web applications that are fast, accessible, and beautiful. I specialize in Next.js, React, TypeScript, and Tailwind CSS.",
+    "With additional experience in Node.js and PostgreSQL, I bring a full understanding of the stack — from pixel-perfect interfaces to reliable APIs. I focus on clean architecture, performance optimization, and delivering exceptional user experiences."
+  ],
+  "highlights": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"]
+}
