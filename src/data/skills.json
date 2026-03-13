@@ -3,19 +3,37 @@
   "heading": "Technologies I work with",
   "groups": [
     {
-      "title": "Frontend",
+      "title": "Frontend & Mobile",
       "icon": "Code2",
-      "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux Toolkit"]
+      "skills": [
+        "React",
+        "Next.js",
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux Toolkit"
+      ]
     },
     {
       "title": "Backend",
       "icon": "Server",
-      "skills": ["Node.js", "REST APIs", "PostgreSQL"]
+      "skills": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "PostgreSQL"
+      ]
     },
     {
       "title": "Tools",
       "icon": "Wrench",
-      "skills": ["Git", "Vercel", "Docker", "AWS"]
+      "skills": [
+        "Git",
+        "Docker",
+        "Vercel"
+      ]
     }
   ]
 }

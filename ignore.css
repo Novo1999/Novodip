@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -51,11 +53,18 @@
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
 
   html {
     scroll-behavior: smooth;
   }
 
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
 
   ::selection {
     background: hsl(200 100% 60% / 0.3);
@@ -66,28 +75,9 @@
 @layer components {
   .glass-card {
     background: hsl(var(--glass-bg));
+    border: 1px solid hsl(var(--glass-border));
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
-  }
-
-  .btn-gradient {
-    background: var(--gradient-text);
-    color: white;
-    font-weight: 500;
-    padding: 0.6rem 1.4rem;
-    border-radius: var(--radius);
-    transition: all 0.25s ease;
-  }
-
-  .btn-gradient:hover {
-    filter: brightness(1.1);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-1px);
-  }
-
-  .btn-gradient:active {
-    transform: translateY(0);
-    filter: brightness(0.95);
   }
 
   .glass-card:hover {
@@ -143,16 +133,4 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  .bg-background {
-    background-color: hsl(var(--background));
-  }
-
-  .text-primary {
-    color: hsl(var(--primary));
-  }
-}
-
-button {
-  cursor: pointer;
 }

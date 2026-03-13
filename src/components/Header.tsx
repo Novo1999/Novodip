@@ -1,3 +1,4 @@
+import ScrollProgress from '#/components/ScrollProgress'
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
@@ -30,6 +31,7 @@ const Header = () => {
 
   return (
     <>
+      <ScrollProgress />
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -52,6 +54,9 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
+            <button className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+              My Resume
+            </button>
           </div>
           <a
             href="#contact"
@@ -99,6 +104,9 @@ const Header = () => {
                   {link.label}
                 </motion.a>
               ))}
+              <button className="text-lg py-3 px-4 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+                My Resume
+              </button>
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}

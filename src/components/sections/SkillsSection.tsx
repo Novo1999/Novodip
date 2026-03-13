@@ -52,6 +52,18 @@ const SkillsSection = () => {
             )
           })}
         </div>
+        <div className="flex justify-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="text-sm text-muted-foreground mt-10 max-w-xl text-center"
+          >
+            I also have experience working with <strong>NestJS</strong> and
+            building scalable backend services, allowing me to collaborate
+            effectively across the full stack.
+          </motion.p>
+        </div>
       </div>
     </section>
   )
