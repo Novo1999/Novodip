@@ -35,7 +35,7 @@ const AboutSection = () => {
             {aboutData.heading.split('precision')[0]}
             <span className="gradient-text">precision</span>
           </h2>
-          <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
+          <div className="space-y-5 text-muted-foreground text-lg leading-relaxed text-justify">
             {aboutData.paragraphs.map((p, i) => (
               <p key={i}>{highlightWords(p, aboutData.highlights)}</p>
             ))}

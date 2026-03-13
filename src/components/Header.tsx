@@ -1,3 +1,4 @@
+import ResumeModal from '#/components/ResumeModal'
 import ScrollProgress from '#/components/ScrollProgress'
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
@@ -14,6 +15,7 @@ const navLinks = [
 const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [resumeOpen, setResumeOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -21,7 +23,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => {
@@ -32,6 +33,8 @@ const Header = () => {
   return (
     <>
       <ScrollProgress />
+      <ResumeModal open={resumeOpen} onOpenChange={setResumeOpen} />
+
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -42,8 +45,9 @@ const Header = () => {
       >
         <div className="container mx-auto flex items-center justify-between h-16 px-6">
           <a href="#" className="text-lg font-bold gradient-text">
-            Novo
+            Novodip
           </a>
+
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -54,10 +58,15 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <button className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+
+            <button
+              onClick={() => setResumeOpen(true)}
+              className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+            >
               My Resume
             </button>
           </div>
+
           <a
             href="#contact"
             className="hidden md:inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity btn-gradient"
@@ -65,7 +74,6 @@ const Header = () => {
             Get in Touch
           </a>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
@@ -80,7 +88,6 @@ const Header = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile menu overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -104,9 +111,17 @@ const Header = () => {
                   {link.label}
                 </motion.a>
               ))}
-              <button className="text-lg py-3 px-4 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+
+              <button
+                onClick={() => {
+                  setMobileOpen(false)
+                  setResumeOpen(true)
+                }}
+                className="text-lg py-3 px-4 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              >
                 My Resume
               </button>
+
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}

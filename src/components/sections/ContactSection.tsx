@@ -8,12 +8,66 @@ const iconMap: Record<string, React.ElementType> = { Github, Linkedin, Mail }
 const ContactSection = () => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
+
   const [submitted, setSubmitted] = useState(false)
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+
+  const validate = () => {
+    const newErrors = { name: '', email: '', message: '' }
+
+    if (!form.name.trim()) newErrors.name = 'Name is required'
+
+    if (!form.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      newErrors.email = 'Invalid email'
+    }
+
+    if (!form.message.trim()) newErrors.message = 'Message is required'
+
+    setErrors(newErrors)
+
+    return !newErrors.name && !newErrors.email && !newErrors.message
+  }
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: '',
+    }))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!validate()) return
+
     setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
+
+    setTimeout(() => {
+      setSubmitted(false)
+      setForm({ name: '', email: '', message: '' })
+    }, 3000)
   }
 
   return (
@@ -44,41 +98,47 @@ const ContactSection = () => {
             className="space-y-5"
           >
             <div>
-              <label htmlFor="contact-name" className="sr-only">
-                Name
-              </label>
               <input
-                id="contact-name"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
                 type="text"
                 placeholder="Name"
-                required
                 className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
               />
+              {errors.name && (
+                <p className="text-xs text-red-400 mt-1">{errors.name}</p>
+              )}
             </div>
+
             <div>
-              <label htmlFor="contact-email" className="sr-only">
-                Email
-              </label>
               <input
-                id="contact-email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
                 type="email"
                 placeholder="Email"
-                required
                 className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
               />
+              {errors.email && (
+                <p className="text-xs text-red-400 mt-1">{errors.email}</p>
+              )}
             </div>
+
             <div>
-              <label htmlFor="contact-message" className="sr-only">
-                Message
-              </label>
               <textarea
-                id="contact-message"
+                name="message"
+                value={form.message}
+                onChange={handleChange}
                 rows={5}
                 placeholder="Message"
-                required
                 className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none"
               />
+              {errors.message && (
+                <p className="text-xs text-red-400 mt-1">{errors.message}</p>
+              )}
             </div>
+
             <button
               type="submit"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium btn-gradient text-primary-foreground hover:opacity-90 transition-opacity"
@@ -95,9 +155,11 @@ const ContactSection = () => {
             className="space-y-6"
           >
             <p className="text-muted-foreground">Or reach me through:</p>
+
             <nav aria-label="Social links" className="space-y-4">
               {contactData.socialLinks.map((link) => {
                 const Icon = iconMap[link.icon]
+
                 return (
                   <a
                     key={link.label}

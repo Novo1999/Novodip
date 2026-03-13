@@ -3,8 +3,8 @@
   "heading": "Let's work together",
   "description": "Have a project in mind? I'd love to hear about it. Drop me a message and I'll get back to you as soon as possible.",
   "socialLinks": [
-    { "label": "GitHub", "url": "https://github.com", "icon": "Github" },
-    { "label": "LinkedIn", "url": "https://linkedin.com", "icon": "Linkedin" },
-    { "label": "hello@novo.dev", "url": "mailto:hello@novo.dev", "icon": "Mail" }
+    { "label": "GitHub", "url": "https://github.com/Novo1999", "icon": "Github" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/novodip/", "icon": "Linkedin" },
+    { "label": "novorony52@gmail.com", "url": "mailto:novorony52@gmail.com", "icon": "Mail" }
   ]
 }

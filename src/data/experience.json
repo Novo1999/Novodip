@@ -3,16 +3,16 @@
   "heading": "Where I've worked",
   "experiences": [
     {
-      "role": "Frontend Developer",
-      "company": "Freelance / Contract",
-      "period": "2023 — Present",
+      "role": "Junior Frontend Developer - Remote",
+      "company": "Wensyve",
+      "period": "2024 — 2025",
       "description": "Building scalable web applications with Next.js and React. Focused on performance optimization, clean architecture, and delivering polished user experiences for clients."
     },
     {
-      "role": "Web Developer",
-      "company": "Projects & Open Source",
-      "period": "2022 — 2023",
-      "description": "Developed multiple full-stack applications including admin dashboards, real-time messaging systems, and mobile apps using React Native and Expo."
+      "role": "Junior Software Engineer (Frontend)",
+      "company": "Dhrubok Infotech Services Ltd.",
+      "period": "2025 — 2026",
+      "description": "Designing and Developing Task a Task Admin Panel with Next.JS, Designing and Developing Task a Task Mobile Application with Expo, React Native and Redux"
     }
   ]
 }

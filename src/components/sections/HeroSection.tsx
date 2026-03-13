@@ -83,11 +83,17 @@ const HeroSection = () => {
             className="flex-shrink-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] relative"
           >
             <div className="absolute inset-0 rounded-full bg-primary/5 blur-[60px]" />
-            <img
-              src="https://picsum.photos/seed/picsum/200/300"
+            <motion.img
+              src="/portfolio-avatar.png"
               alt="Abstract tech illustration representing modern web development"
               className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
               loading="eager"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{
+                duration: 2,
+                ease: 'easeInOut',
+                repeat: Infinity,
+              }}
             />
           </motion.div>
         </div>
