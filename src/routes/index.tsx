@@ -18,10 +18,10 @@ function App() {
   return (
     <div className="min-h-screen bg-background noise-bg">
       <HeroSection />
-      <AboutSection />
+      <ExperienceSection />
       <SkillsSection />
       <ProjectsSection />
-      <ExperienceSection />
+      <AboutSection />
       <ContactSection />
     </div>
   )

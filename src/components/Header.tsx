@@ -1,5 +1,6 @@
 import ResumeModal from '#/components/ResumeModal'
 import ScrollProgress from '#/components/ScrollProgress'
+import { supabase } from '#/lib/supabase'
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
@@ -11,6 +12,10 @@ const navLinks = [
   { label: 'Experience', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ]
+
+const incrementResumeClickCount = async () => {
+  await supabase.rpc('increment_resume_count')
+}
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -60,7 +65,10 @@ const Header = () => {
             ))}
 
             <button
-              onClick={() => setResumeOpen(true)}
+              onClick={async () => {
+                setResumeOpen(true)
+                await incrementResumeClickCount()
+              }}
               className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
             >
               My Resume
