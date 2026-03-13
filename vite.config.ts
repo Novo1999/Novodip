@@ -8,7 +8,10 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import netlify from '@netlify/vite-plugin-tanstack-start'
 
-const config = defineConfig({
+const config = defineConfig({ 
+  optimizeDeps: {
+    force: true
+  },
   plugins: [
     devtools(),
     netlify(),

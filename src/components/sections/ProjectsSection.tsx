@@ -40,7 +40,7 @@ const ProjectsSection = () => {
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-md text-xs font-mono bg-secondary text-muted-foreground border border-border"
+                        className="px-2.5 py-1 rounded-md text-xs font-mono bg-secondary text-muted-foreground border"
                       >
                         {tech}
                       </span>
@@ -50,14 +50,14 @@ const ProjectsSection = () => {
                 <div className="flex items-center gap-3 shrink-0">
                   <a
                     href={project.github}
-                    className="p-2.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                    className="p-2.5 rounded-lg border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
                     aria-label={`${project.title} GitHub repository`}
                   >
                     <Github className="w-4 h-4" />
                   </a>
                   <a
                     href={project.live}
-                    className="p-2.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                    className="p-2.5 rounded-lg border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
                     aria-label={`${project.title} live demo`}
                   >
                     <ExternalLink className="w-4 h-4" />

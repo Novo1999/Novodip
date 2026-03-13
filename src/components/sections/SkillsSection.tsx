@@ -42,7 +42,7 @@ const SkillsSection = () => {
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 rounded-md text-sm bg-secondary text-secondary-foreground border border-border"
+                      className="px-3 py-1.5 rounded-md text-sm bg-secondary text-secondary-foreground border"
                     >
                       {skill}
                     </span>

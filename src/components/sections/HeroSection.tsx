@@ -20,7 +20,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-secondary/50 text-sm text-muted-foreground mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border bg-secondary/50 text-sm text-muted-foreground mb-8">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 {heroData.statusText}
               </div>
@@ -61,13 +61,13 @@ const HeroSection = () => {
             >
               <a
                 href={heroData.ctaPrimary.href}
-                className="inline-flex items-center px-6 py-3 rounded-lg font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                className="inline-flex items-center px-6 py-3 rounded-lg font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity btn-gradient"
               >
                 {heroData.ctaPrimary.label}
               </a>
               <a
                 href={heroData.ctaSecondary.href}
-                className="inline-flex items-center px-6 py-3 rounded-lg font-medium border border-border text-foreground hover:bg-secondary transition-colors"
+                className="inline-flex items-center px-6 py-3 rounded-lg font-medium border text-foreground hover:bg-secondary transition-colors"
               >
                 {heroData.ctaSecondary.label}
               </a>
