@@ -1,4 +1,5 @@
 import contactData from '@/data/contact.json'
+import { sendEmail } from '@/lib/sendEmail'
 import { motion, useInView } from 'framer-motion'
 import { Github, Linkedin, Mail, Send } from 'lucide-react'
 import { useRef, useState } from 'react'
@@ -8,7 +9,7 @@ const iconMap: Record<string, React.ElementType> = { Github, Linkedin, Mail }
 const ContactSection = () => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
-
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
   const [form, setForm] = useState({
@@ -23,6 +24,24 @@ const ContactSection = () => {
     message: '',
   })
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validate()) return
+
+    setIsSubmitting(true)
+
+    const success = await sendEmail(form)
+
+    if (success) {
+      setSubmitted(true)
+      setForm({ name: '', email: '', message: '' })
+
+      setTimeout(() => setSubmitted(false), 3000)
+    }
+
+    setIsSubmitting(false)
+  }
   const validate = () => {
     const newErrors = { name: '', email: '', message: '' }
 
@@ -42,7 +61,7 @@ const ContactSection = () => {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target
 
@@ -55,19 +74,6 @@ const ContactSection = () => {
       ...prev,
       [name]: '',
     }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validate()) return
-
-    setSubmitted(true)
-
-    setTimeout(() => {
-      setSubmitted(false)
-      setForm({ name: '', email: '', message: '' })
-    }, 3000)
   }
 
   return (
@@ -141,9 +147,14 @@ const ContactSection = () => {
 
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium btn-gradient text-primary-foreground hover:opacity-90 transition-opacity"
+              disabled={isSubmitting}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium btn-gradient text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50"
             >
-              {submitted ? 'Message Sent!' : 'Send Message'}
+              {isSubmitting
+                ? 'Sending...'
+                : submitted
+                  ? 'Message Sent!'
+                  : 'Send Message'}
               <Send className="w-4 h-4" />
             </button>
           </motion.form>
