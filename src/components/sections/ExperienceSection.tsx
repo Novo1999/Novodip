@@ -52,9 +52,9 @@ const ExperienceSection = () => {
                 <p className="text-sm text-muted-foreground mb-3">
                   {exp.company}
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  {exp.description}
-                </p>
+                {exp.description.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </motion.div>
             ))}
           </div>
