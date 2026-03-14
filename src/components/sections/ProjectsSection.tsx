@@ -1,11 +1,17 @@
-import projectsData from "@/data/projects.json";
-import { motion, useInView } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
-import { useRef } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import projectsData from '@/data/projects.json'
+import { motion, useInView } from 'framer-motion'
+import { ExternalLink, Github } from 'lucide-react'
+import { useRef } from 'react'
 
 const ProjectsSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section id="projects" className="py-32 relative" aria-label="Projects">
@@ -54,39 +60,58 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 shrink-0">
-                  {project.github.map((link, idx) => (
-                    <a
-                      key={idx}
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
-                      aria-label={`${project.title} GitHub repository`}
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                  ))}
+                <TooltipProvider>
+                  <div className="flex items-center gap-3 shrink-0">
+                    {project.github.map((link, idx) => {
+                      const label = idx === 0 ? 'Frontend code' : 'Backend code'
 
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
-                      aria-label={`${project.title} live demo`}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
+                      return (
+                        <Tooltip key={idx}>
+                          <TooltipTrigger asChild>
+                            <a
+                              href={link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2.5 rounded-lg border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                              aria-label={`${project.title} GitHub repository`}
+                            >
+                              <Github className="w-4 h-4" />
+                            </a>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{label}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      )
+                    })}
+
+                    {project.live && (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2.5 rounded-lg border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                            aria-label={`${project.title} live demo`}
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Live site</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                  </div>
+                </TooltipProvider>
               </div>
             </motion.article>
           ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ProjectsSection;
+export default ProjectsSection
