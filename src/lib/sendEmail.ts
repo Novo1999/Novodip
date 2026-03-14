@@ -12,8 +12,18 @@ export type EmailPayload = {
 }
 
 export const sendEmail = async (data: EmailPayload) => {
+  const templateParams = {
+    from_name: data.name,
+    user_email: data.email,
+    subject: 'Portfolio Contact',
+    message: data.message,
+  }
+
   try {
-    await emailjs.send(serviceId, templateId, data, { publicKey })
+    await emailjs.send(serviceId, templateId, templateParams, {
+      publicKey,
+    })
+
     toast.success('Email sent successfully')
     return true
   } catch (error: any) {
