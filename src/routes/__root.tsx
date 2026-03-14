@@ -1,5 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
+import NotFound from '#/routes/not-found'
 import Header from '../components/Header'
 import appCss from '../styles.css?url'
 
@@ -27,6 +28,9 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
+  notFoundComponent: () => {
+    return <NotFound />
+  },
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
