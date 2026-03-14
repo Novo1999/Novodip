@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 const HeroSection = () => {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden dot-pattern"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden dot-pattern mt-16"
       aria-label="Hero"
     >
       {/* Ambient glow */}

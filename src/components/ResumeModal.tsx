@@ -1,4 +1,4 @@
-import { Download, X, ZoomIn, ZoomOut } from 'lucide-react'
+import { Download, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
@@ -9,9 +9,6 @@ interface ResumeModalProps {
 
 const ResumeModal = ({ open, onOpenChange }: ResumeModalProps) => {
   const [zoom, setZoom] = useState(1)
-
-  const zoomIn = () => setZoom((z) => Math.min(z + 0.25, 3))
-  const zoomOut = () => setZoom((z) => Math.max(z - 0.25, 0.5))
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

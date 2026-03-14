@@ -14,6 +14,13 @@ const navLinks = [
 ]
 
 const incrementResumeClickCount = async () => {
+  const allowedOrigins = [
+    'https://novodip.netlify.app',
+    'https://www.novodip.netlify.app',
+  ]
+
+  if (!allowedOrigins.includes(window.location.origin)) return
+
   await supabase.rpc('increment_resume_count')
 }
 
