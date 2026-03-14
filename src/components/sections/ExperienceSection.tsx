@@ -53,7 +53,7 @@ const ExperienceSection = () => {
                   {exp.company}
                 </p>
                 {exp.description.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li className='list-none' key={item}>{item}</li>
                 ))}
               </motion.div>
             ))}
