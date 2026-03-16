@@ -4,6 +4,7 @@ import ExperienceSection from '#/components/sections/ExperienceSection'
 import HeroSection from '#/components/sections/HeroSection'
 import ProjectsSection from '#/components/sections/ProjectsSection'
 import SkillsSection from '#/components/sections/SkillsSection'
+import injectHeadForSEO from '#/lib/seo'
 import NotFound from '#/routes/not-found'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -12,6 +13,7 @@ export const Route = createFileRoute('/')({
   notFoundComponent: () => {
     return <NotFound />
   },
+  head: injectHeadForSEO,
 })
 
 function App() {

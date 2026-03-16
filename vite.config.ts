@@ -8,9 +8,9 @@ import netlify from '@netlify/vite-plugin-tanstack-start'
 import tailwindcss from '@tailwindcss/vite'
 import viteReact from '@vitejs/plugin-react'
 
-const config = defineConfig({ 
+const config = defineConfig({
   optimizeDeps: {
-    force: true
+    force: true,
   },
   plugins: [
     devtools(),
@@ -19,6 +19,16 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart(),
     viteReact(),
+    tanstackStart({
+      prerender: {
+        enabled: true,
+        crawlLinks: true,
+      },
+      sitemap: {
+        enabled: true,
+        host: 'https://novodip.netlify.app/',
+      },
+    }),
   ],
 })
 
