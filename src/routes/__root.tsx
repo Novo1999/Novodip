@@ -1,5 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
+import { TooltipProvider } from '#/components/ui/tooltip'
 import NotFound from '#/routes/not-found'
 import Header from '../components/Header'
 import appCss from '../styles.css?url'
@@ -42,8 +43,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
         <Header />
-
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
         {/* <TanStackDevtools
           config={{
             position: 'bottom-right',

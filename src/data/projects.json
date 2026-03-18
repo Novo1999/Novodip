@@ -3,37 +3,74 @@
   "heading": "Selected work",
   "projects": [
     {
+      "title": "Moneymate",
+      "description": "A modern finance platform built with Next.js, Tailwind, PostgreSQL, Express to manage your personal financial transactions history.",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Express.js",
+        "PostgreSQL"
+      ],
+      "github": [
+        "https://github.com/Novo1999/moneymate-frontend",
+        "https://github.com/Novo1999/moneymate-backend"
+      ],
+      "live": "https://moneymatefinance.vercel.app/"
+    },
+    {
       "title": "Upliftt",
       "description": "A modern web platform built with Next.js and Tailwind focused on clean UI and performance-driven frontend architecture.",
-      "stack": ["Next.js", "React", "Tailwind"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind"
+      ],
       "github": [],
       "live": "https://novodip.vercel.app/projects/uplift"
     },
     {
       "title": "The Clinician",
       "description": "A healthcare-focused web platform delivering medical resources and information with a fast and responsive Next.js frontend.",
-      "stack": ["Next.js", "React", "Tailwind"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind"
+      ],
       "github": [],
       "live": "https://theclinician.org/en"
     },
     {
       "title": "Bin Mahmud",
-      "description": "Corporate website developed with Next.js featuring multilingual support and modern responsive UI design.",
-      "stack": ["Next.js", "React", "Tailwind"],
+      "description": "E-commerce Website with Next.js featuring multilingual support and modern responsive UI design.",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind"
+      ],
       "github": [],
       "live": "https://binmahmud.com/en"
     },
     {
       "title": "Mediverse",
       "description": "Medical services platform built with Next.js emphasizing responsive design, usability, and optimized frontend performance.",
-      "stack": ["Next.js", "React", "Tailwind"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind"
+      ],
       "github": [],
       "live": "https://mediversebd.com/"
     },
     {
       "title": "Flowboard",
       "description": "A Kanban-style task management system with drag-and-drop workflow management and a full-stack architecture.",
-      "stack": ["React", "Tailwind", "Node.js", "MongoDB"],
+      "stack": [
+        "React",
+        "Tailwind",
+        "Node.js",
+        "MongoDB"
+      ],
       "github": [
         "https://github.com/Novo1999/Kanban-Frontend",
         "https://github.com/Novo1999/Kanban-Backend"
@@ -43,7 +80,12 @@
     {
       "title": "Kartigo",
       "description": "A full-stack e-commerce platform with product browsing, shopping workflows, and backend services powered by MongoDB.",
-      "stack": ["Next.js", "React", "Tailwind", "MongoDB"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "MongoDB"
+      ],
       "github": [
         "https://github.com/Novo1999/kartigo-nextt"
       ],
@@ -52,7 +94,13 @@
     {
       "title": "RemoteJumbo",
       "description": "A remote job listing platform built with a full-stack architecture enabling job discovery and posting workflows.",
-      "stack": ["Next.js", "React", "Tailwind", "Node.js", "MongoDB"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Node.js",
+        "MongoDB"
+      ],
       "github": [
         "https://github.com/Novo1999/Remote-Job",
         "https://github.com/Novo1999/RemoteJumbo---Backend"

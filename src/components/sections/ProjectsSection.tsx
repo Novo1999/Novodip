@@ -60,7 +60,6 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <TooltipProvider>
                   <div className="flex items-center gap-3 shrink-0">
                     {project.github.map((link, idx) => {
                       const label = idx === 0 ? 'Frontend code' : 'Backend code'
@@ -104,7 +103,6 @@ const ProjectsSection = () => {
                       </Tooltip>
                     )}
                   </div>
-                </TooltipProvider>
               </div>
             </motion.article>
           ))}

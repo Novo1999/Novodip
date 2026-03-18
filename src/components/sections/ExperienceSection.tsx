@@ -1,5 +1,6 @@
 import experienceData from '@/data/experience.json'
 import { motion, useInView } from 'framer-motion'
+import { Dot } from 'lucide-react'
 import { useRef } from 'react'
 
 const ExperienceSection = () => {
@@ -53,7 +54,10 @@ const ExperienceSection = () => {
                   {exp.company}
                 </p>
                 {exp.description.map((item) => (
-                  <li className='list-none' key={item}>{item}</li>
+                  <li className="list-none flex mb-2" key={item}>
+                    <Dot /> 
+                    <p>{item}</p>
+                  </li>
                 ))}
               </motion.div>
             ))}

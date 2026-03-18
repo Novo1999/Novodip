@@ -76,7 +76,7 @@ const Header = () => {
                 setResumeOpen(true)
                 await incrementResumeClickCount()
               }}
-              className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground transition-colors"
             >
               My Resume
             </button>
