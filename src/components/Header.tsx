@@ -56,7 +56,7 @@ const Header = () => {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between h-16 px-6">
-          <a href="#" className="text-lg font-bold gradient-text">
+          <a href="/" className="text-lg font-bold gradient-text">
             Novodip
           </a>
 
