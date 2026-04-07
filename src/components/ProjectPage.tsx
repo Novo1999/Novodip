@@ -1,51 +1,56 @@
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { useState } from "react";
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { X } from 'lucide-react'
+import { useState } from 'react'
 
 const screenshots = [
-  { file: "taskatask-address.jpg", label: "Address" },
-  { file: "taskatask-chat-image.jpg", label: "Chat Image" },
-  { file: "taskatask-chat-img-file.jpg", label: "Chat Image With File" },
-  { file: "taskatask-chat-options.jpg", label: "Chat Options" },
-  { file: "taskatask-chat.jpg", label: "Chat" },
-  { file: "taskatask-chatsetting.jpg", label: "Chat Settings" },
-  { file: "taskatask-closing.jpg", label: "Closing" },
-  { file: "taskatask-createtask.jpg", label: "Create Task" },
-  { file: "taskatask-deadline.jpg", label: "Deadline" },
-  { file: "taskatask-feedback.jpg", label: "Feedback" },
-  { file: "taskatask-leftmenu.jpg", label: "Left Menu" },
-  { file: "taskatask-location.jpg", label: "Location" },
-  { file: "taskatask-map.jpg", label: "Map" },
-  { file: "taskatask-navigation-step.jpg", label: "Navigation Step" },
-  { file: "taskatask-operatingtimes.jpg", label: "Operating Times" },
-  { file: "taskatask-parking.jpg", label: "Parking" },
-  { file: "taskatask-person.jpg", label: "Person" },
-  { file: "taskatask-rightmenu.jpg", label: "Right Menu" },
-  { file: "taskatask-schedule.jpg", label: "Schedul Message" },
-  { file: "taskatask-sending.jpg", label: "Chat Message Sending" },
-  { file: "taskatask-task.jpg", label: "Task" },
-  { file: "taskatask-workspace.jpg", label: "Workspace" },
-];
+  { file: 'taskatask-address.jpg', label: 'Address' },
+  { file: 'taskatask-chat-image.jpg', label: 'Chat Image' },
+  { file: 'taskatask-chat-img-file.jpg', label: 'Chat Image With File' },
+  { file: 'taskatask-chat-options.jpg', label: 'Chat Options' },
+  { file: 'taskatask-chat.jpg', label: 'Chat' },
+  { file: 'taskatask-chatsetting.jpg', label: 'Chat Settings' },
+  { file: 'taskatask-closing.jpg', label: 'Closing' },
+  { file: 'taskatask-createtask.jpg', label: 'Create Task' },
+  { file: 'taskatask-deadline.jpg', label: 'Deadline' },
+  { file: 'taskatask-feedback.jpg', label: 'Feedback' },
+  { file: 'taskatask-leftmenu.jpg', label: 'Left Menu' },
+  { file: 'taskatask-location.jpg', label: 'Location' },
+  { file: 'taskatask-map.jpg', label: 'Map' },
+  { file: 'taskatask-navigation-step.jpg', label: 'Navigation Step' },
+  { file: 'taskatask-operatingtimes.jpg', label: 'Operating Times' },
+  { file: 'taskatask-parking.jpg', label: 'Parking' },
+  { file: 'taskatask-person.jpg', label: 'Person' },
+  { file: 'taskatask-rightmenu.jpg', label: 'Right Menu' },
+  { file: 'taskatask-schedule.jpg', label: 'Schedul Message' },
+  { file: 'taskatask-sending.jpg', label: 'Chat Message Sending' },
+  { file: 'taskatask-task.jpg', label: 'Task' },
+  { file: 'taskatask-workspace.jpg', label: 'Workspace' },
+]
 
 export default function ProjectPage() {
-  const [selected, setSelected] = useState<(typeof screenshots)[0] | null>(null);
+  const [selected, setSelected] = useState<(typeof screenshots)[0] | null>(null)
 
   return (
     <div className="min-h-screen bg-background text-foreground px-4 sm:px-8 md:px-16 lg:px-32 py-16 sm:py-24 space-y-16">
-
       {/* Header */}
       <header className="space-y-3 max-w-2xl">
-        <p className="text-sm text-muted-foreground tracking-widest uppercase">Project</p>
+        <p className="text-sm text-muted-foreground tracking-widest uppercase">
+          Project
+        </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
           Taskatask
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          A real-time task management platform with chat, scheduling, maps, and workspace features.
+          A real-time task management platform with chat, scheduling, maps, and
+          workspace features.
         </p>
       </header>
 
       {/* Video */}
       <section className="space-y-3">
-        <h2 className="text-sm text-muted-foreground tracking-widest uppercase">Demo</h2>
+        <h2 className="text-sm text-muted-foreground tracking-widest uppercase">
+          Demo
+        </h2>
         <div className="w-full aspect-video rounded-xl overflow-hidden bg-muted">
           <iframe
             className="w-full h-full"
@@ -87,11 +92,21 @@ export default function ProjectPage() {
       </section>
 
       {/* Modal */}
-      <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
+      <Dialog
+        open={!!selected}
+        onOpenChange={(open) => !open && setSelected(null)}
+      >
         <DialogContent className="max-w-sm sm:max-w-md p-0 overflow-hidden bg-background border border-border rounded-xl">
           {selected && (
             <div className="flex flex-col">
-              <div className="w-full aspect-[9/16] bg-muted">
+              {/* Close button inside the modal */}
+              <div className="relative w-full aspect-[9/16] bg-muted">
+                <button
+                  onClick={() => setSelected(null)}
+                  className="absolute top-20 right-2 z-10 p-1.5 rounded-full bg-black/60 hover:bg-black/80 text-white transition"
+                >
+                  <X size={16} />
+                </button>
                 <img
                   src={`/Taskatask/${selected.file}`}
                   alt={selected.label}
@@ -99,14 +114,17 @@ export default function ProjectPage() {
                 />
               </div>
               <div className="px-5 py-4 border-t border-border">
-                <p className="text-sm font-medium text-foreground">{selected.label}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">Taskatask · Screenshot</p>
+                <p className="text-sm font-medium text-foreground">
+                  {selected.label}
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Taskatask · Screenshot
+                </p>
               </div>
             </div>
           )}
         </DialogContent>
       </Dialog>
-
     </div>
-  );
+  )
 }
