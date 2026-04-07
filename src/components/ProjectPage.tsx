@@ -4,7 +4,7 @@ import { useState } from "react";
 const screenshots = [
   { file: "taskatask-address.jpg", label: "Address" },
   { file: "taskatask-chat-image.jpg", label: "Chat Image" },
-  { file: "taskatask-chat-img-file.jpg", label: "Chat Image File" },
+  { file: "taskatask-chat-img-file.jpg", label: "Chat Image With File" },
   { file: "taskatask-chat-options.jpg", label: "Chat Options" },
   { file: "taskatask-chat.jpg", label: "Chat" },
   { file: "taskatask-chatsetting.jpg", label: "Chat Settings" },
@@ -20,8 +20,8 @@ const screenshots = [
   { file: "taskatask-parking.jpg", label: "Parking" },
   { file: "taskatask-person.jpg", label: "Person" },
   { file: "taskatask-rightmenu.jpg", label: "Right Menu" },
-  { file: "taskatask-schedule.jpg", label: "Schedule" },
-  { file: "taskatask-sending.jpg", label: "Sending" },
+  { file: "taskatask-schedule.jpg", label: "Schedul Message" },
+  { file: "taskatask-sending.jpg", label: "Chat Message Sending" },
   { file: "taskatask-task.jpg", label: "Task" },
   { file: "taskatask-workspace.jpg", label: "Workspace" },
 ];
