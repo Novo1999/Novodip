@@ -3,6 +3,22 @@
   "heading": "Selected work",
   "projects": [
     {
+      "title": "Docuflash",
+      "description": "Instant, no-signup file sharing — upload PDFs, docs, and archives to get shareable links in seconds, with password protection and auto-expiry.",
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "Tailwind v4",
+        "HeroUI",
+        "UploadThing",
+        "TypeScript"
+      ],
+      "thumbnail": "/thumbnails/docuflash_thumbnail.png",
+      "live": "https://docuflash-frontend.vercel.app/",
+      "frontend": "https://github.com/Novo1999/docuflash-frontend",
+      "backend": "https://github.com/Novo1999/Docuflash-Backend"
+    },
+    {
       "title": "Moneymate",
       "description": "A modern finance platform built with Next.js, Tailwind, PostgreSQL, Express to manage your personal financial transactions history.",
       "stack": [
@@ -12,11 +28,10 @@
         "Express.js",
         "PostgreSQL"
       ],
-      "github": [
-        "https://github.com/Novo1999/moneymate-frontend",
-        "https://github.com/Novo1999/moneymate-backend"
-      ],
-      "live": "https://moneymatefinance.vercel.app/"
+      "thumbnail": "/thumbnails/moneymate_thumbnail.png",
+      "live": "https://moneymatefinance.vercel.app/",
+      "frontend": "https://github.com/Novo1999/moneymate-frontend",
+      "backend": "https://github.com/Novo1999/moneymate-backend"
     },
     {
       "title": "Upliftt",
@@ -26,8 +41,10 @@
         "React",
         "Tailwind"
       ],
-      "github": [],
-      "live": "https://novodip.vercel.app/projects/uplift"
+      "thumbnail": "/thumbnails/uplift_thumbnail.png",
+      "live": "https://novodip.vercel.app/projects/uplift",
+      "frontend": "",
+      "backend": ""
     },
     {
       "title": "The Clinician",
@@ -37,8 +54,10 @@
         "React",
         "Tailwind"
       ],
-      "github": [],
-      "live": "https://theclinician.org/en"
+      "thumbnail": "/thumbnails/clinician_thumbnail.png",
+      "live": "https://theclinician.org/en",
+      "frontend": "",
+      "backend": ""
     },
     {
       "title": "Bin Mahmud",
@@ -48,8 +67,10 @@
         "React",
         "Tailwind"
       ],
-      "github": [],
-      "live": "https://binmahmud.com/en"
+      "thumbnail": "/thumbnails/bin_mahmud_thumbnail.png",
+      "live": "https://binmahmud.com/en",
+      "frontend": "",
+      "backend": ""
     },
     {
       "title": "Mediverse",
@@ -59,8 +80,10 @@
         "React",
         "Tailwind"
       ],
-      "github": [],
-      "live": "https://mediversebd.com/"
+      "thumbnail": "/thumbnails/mediverse_thumbnail.png",
+      "live": "https://mediversebd.com/",
+      "frontend": "",
+      "backend": ""
     },
     {
       "title": "Flowboard",
@@ -71,11 +94,10 @@
         "Node.js",
         "MongoDB"
       ],
-      "github": [
-        "https://github.com/Novo1999/Kanban-Frontend",
-        "https://github.com/Novo1999/Kanban-Backend"
-      ],
-      "live": "https://kanban-novo-frontend.vercel.app/"
+      "thumbnail": "/thumbnails/flowboard_thumbnail.png",
+      "live": "https://kanban-novo-frontend.vercel.app/",
+      "frontend": "https://github.com/Novo1999/Kanban-Frontend",
+      "backend": "https://github.com/Novo1999/Kanban-Backend"
     },
     {
       "title": "Kartigo",
@@ -86,10 +108,10 @@
         "Tailwind",
         "MongoDB"
       ],
-      "github": [
-        "https://github.com/Novo1999/kartigo-nextt"
-      ],
-      "live": "https://kartigo.vercel.app/"
+      "thumbnail": "/thumbnails/kartigo_thumbnail.png",
+      "live": "https://kartigo.vercel.app/",
+      "frontend": "https://github.com/Novo1999/kartigo-nextt",
+      "backend": ""
     },
     {
       "title": "RemoteJumbo",
@@ -101,11 +123,10 @@
         "Node.js",
         "MongoDB"
       ],
-      "github": [
-        "https://github.com/Novo1999/Remote-Job",
-        "https://github.com/Novo1999/RemoteJumbo---Backend"
-      ],
-      "live": "https://remotejumbo.vercel.app/"
+      "thumbnail": "/thumbnails/remotejumbo_thumbnail.png",
+      "live": "https://remotejumbo.vercel.app/",
+      "frontend": "https://github.com/Novo1999/Remote-Job",
+      "backend": "https://github.com/Novo1999/RemoteJumbo---Backend"
     }
   ]
 }

@@ -1,6 +1,6 @@
-import contactData from '@/data/contact.json'
-import Reveal from '@/components/Reveal'
 import Marquee from '@/components/Marquee'
+import Reveal from '@/components/Reveal'
+import contactData from '@/data/contact.json'
 
 const TICKER = ['AVAILABLE FOR WORK', "LET'S TALK", 'FRONTEND DEVELOPER']
 
@@ -38,7 +38,7 @@ const ContactSection = () => {
               href="mailto:novorony52@gmail.com"
               className="inline-flex items-center gap-2.5 rounded-[13px] bg-primary px-7 py-[18px] text-[clamp(1rem,2vw,1.2rem)] font-bold tracking-tight text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-10px_hsl(var(--primary))]"
             >
-              novorony52@gmail.com →
+              neptune.navo@gmail.com →
             </a>
             <a
               href="/resume/resume.pdf"
