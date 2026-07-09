@@ -1,69 +1,56 @@
 import skillsData from '@/data/skills.json'
-import { motion, useInView } from 'framer-motion'
-import { Code2, Server, Wrench } from 'lucide-react'
-import { useRef } from 'react'
-
-const iconMap: Record<string, React.ElementType> = { Code2, Server, Wrench }
+import Reveal from '@/components/Reveal'
 
 const SkillsSection = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
-    <section id="skills" className="py-32 relative" aria-label="Skills">
-      <div className="container mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="text-sm font-mono text-primary mb-4">
-            {skillsData.sectionLabel}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-16">
-            {skillsData.heading}
-          </h2>
-        </motion.div>
+    <section
+      id="skills"
+      data-screen-label="Skills"
+      className="mx-auto max-w-[1280px] px-7 py-24"
+    >
+      <Reveal>
+        <div className="mb-14 flex items-center gap-3.5">
+          <span className="font-mono text-[13px] tracking-[0.05em] text-primary">
+            04
+          </span>
+          <span className="h-px w-8 bg-white/20" />
+          <span className="eyebrow">Capabilities</span>
+        </div>
+      </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {skillsData.groups.map((group, i) => {
-            const Icon = iconMap[group.icon]
-            return (
-              <motion.div
-                key={group.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="glass-card rounded-xl p-8"
-              >
-                <Icon className="w-6 h-6 text-primary mb-4" />
-                <h3 className="text-lg font-semibold mb-5">{group.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 rounded-md text-sm bg-secondary text-secondary-foreground border"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-        <div className="flex justify-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="text-sm text-muted-foreground mt-10 max-w-xl text-center"
-          >
-            I also have experience working with <strong>NestJS</strong> and
-            building scalable backend services, allowing me to collaborate
-            effectively across the full stack.
-          </motion.p>
-        </div>
+      <Reveal>
+        <h2 className="m-0 mb-16 font-display text-[clamp(2.4rem,6vw,4.4rem)] font-extrabold leading-[0.95] tracking-[-0.04em]">
+          The stack I
+          <br />
+          build with.
+        </h2>
+      </Reveal>
+
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {skillsData.groups.map((g, i) => (
+          <Reveal key={g.title} delay={i * 0.06}>
+            <div className="flex h-full flex-col gap-6 rounded-[20px] border border-border bg-card p-8 transition-colors hover:border-primary/35">
+              <div className="flex items-baseline justify-between">
+                <h3 className="m-0 font-display text-[1.5rem] font-bold tracking-[-0.02em]">
+                  {g.title}
+                </h3>
+                <span className="font-mono text-[13px] text-white/25">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {g.skills.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-border bg-white/[0.045] px-4 py-2.5 text-[14.5px] font-medium text-foreground/85 transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   )

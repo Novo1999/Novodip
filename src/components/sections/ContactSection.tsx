@@ -1,198 +1,99 @@
 import contactData from '@/data/contact.json'
-import { sendEmail } from '@/lib/sendEmail'
-import { motion, useInView } from 'framer-motion'
-import { Github, Linkedin, Mail, Send } from 'lucide-react'
-import { useRef, useState } from 'react'
+import Reveal from '@/components/Reveal'
+import Marquee from '@/components/Marquee'
 
-const iconMap: Record<string, React.ElementType> = { Github, Linkedin, Mail }
+const TICKER = ['AVAILABLE FOR WORK', "LET'S TALK", 'FRONTEND DEVELOPER']
 
 const ContactSection = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validate()) return
-
-    setIsSubmitting(true)
-
-    const success = await sendEmail(form)
-
-    if (success) {
-      setSubmitted(true)
-      setForm({ name: '', email: '', message: '' })
-
-      setTimeout(() => setSubmitted(false), 3000)
-    }
-
-    setIsSubmitting(false)
-  }
-  const validate = () => {
-    const newErrors = { name: '', email: '', message: '' }
-
-    if (!form.name.trim()) newErrors.name = 'Name is required'
-
-    if (!form.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
-      newErrors.email = 'Invalid email'
-    }
-
-    if (!form.message.trim()) newErrors.message = 'Message is required'
-
-    setErrors(newErrors)
-
-    return !newErrors.name && !newErrors.email && !newErrors.message
-  }
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: '',
-    }))
-  }
-
   return (
-    <section id="contact" className="py-32 relative" aria-label="Contact">
-      <div className="container mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="text-sm font-mono text-primary mb-4">
-            {contactData.sectionLabel}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            {contactData.heading}
+    <footer
+      id="contact"
+      data-screen-label="Contact"
+      className="relative mt-15 overflow-hidden border-t border-border"
+    >
+      <div className="pointer-events-none absolute -bottom-[40%] left-1/2 h-[400px] w-4/5 -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,hsl(var(--primary)),transparent_70%)] opacity-10 blur-[60px]" />
+
+      <div className="mx-auto max-w-[1280px] px-7 pt-24">
+        <Reveal>
+          <div className="mb-10 flex items-center gap-3.5">
+            <span className="font-mono text-[13px] tracking-[0.05em] text-primary">
+              05
+            </span>
+            <span className="h-px w-8 bg-white/20" />
+            <span className="eyebrow">Contact</span>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <h2 className="m-0 mb-11 font-display text-[clamp(3rem,11vw,9rem)] font-extrabold leading-[0.85] tracking-[-0.045em]">
+            Let&apos;s build
+            <br />
+            something<span className="text-primary">.</span>
           </h2>
-          <p className="text-muted-foreground mb-16 max-w-lg">
-            {contactData.description}
-          </p>
-        </motion.div>
+        </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-16 max-w-4xl">
-          <motion.form
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
-            <div>
-              <input
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                type="text"
-                placeholder="Name"
-                className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
-              />
-              {errors.name && (
-                <p className="text-xs text-red-400 mt-1">{errors.name}</p>
-              )}
-            </div>
-
-            <div>
-              <input
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                type="email"
-                placeholder="Email"
-                className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
-              />
-              {errors.email && (
-                <p className="text-xs text-red-400 mt-1">{errors.email}</p>
-              )}
-            </div>
-
-            <div>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                rows={5}
-                placeholder="Message"
-                className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none"
-              />
-              {errors.message && (
-                <p className="text-xs text-red-400 mt-1">{errors.message}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium btn-gradient text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50"
+        <Reveal>
+          <div className="mb-14 flex flex-wrap items-center gap-4">
+            <a
+              href="mailto:novorony52@gmail.com"
+              className="inline-flex items-center gap-2.5 rounded-[13px] bg-primary px-7 py-[18px] text-[clamp(1rem,2vw,1.2rem)] font-bold tracking-tight text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-10px_hsl(var(--primary))]"
             >
-              {isSubmitting
-                ? 'Sending...'
-                : submitted
-                  ? 'Message Sent!'
-                  : 'Send Message'}
-              <Send className="w-4 h-4" />
-            </button>
-          </motion.form>
+              novorony52@gmail.com →
+            </a>
+            <a
+              href="/resume/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-[13px] border border-border px-7 py-[18px] text-[clamp(1rem,2vw,1.2rem)] font-semibold text-foreground transition-colors hover:border-primary"
+            >
+              Download Résumé ↓
+            </a>
+          </div>
+        </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
-          >
-            <p className="text-muted-foreground">Or reach me through:</p>
-
-            <nav aria-label="Social links" className="space-y-4">
-              {contactData.socialLinks.map((link) => {
-                const Icon = iconMap[link.icon]
-
-                return (
-                  <a
-                    key={link.label}
-                    href={link.url}
-                    target={
-                      link.url.startsWith('mailto:') ? undefined : '_blank'
-                    }
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
-                  >
-                    <div className="p-2.5 rounded-lg border border-border group-hover:border-primary/30 transition-colors">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    {link.label}
-                  </a>
-                )
-              })}
-            </nav>
-          </motion.div>
-        </div>
+        <Reveal>
+          <div className="mb-20 flex flex-wrap gap-3">
+            {contactData.socialLinks.map((s) => (
+              <a
+                key={s.label}
+                href={s.url}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-border px-[18px] py-2.5 font-mono text-[13px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                {s.label.includes('@') ? 'Email' : s.label} ↗
+              </a>
+            ))}
+          </div>
+        </Reveal>
       </div>
-    </section>
+
+      {/* footer marquee */}
+      <div className="border-t border-border py-8">
+        <Marquee reverse>
+          {TICKER.map((t) => (
+            <span
+              key={t}
+              className="whitespace-nowrap px-8 font-display text-[clamp(2rem,4vw,3.2rem)] font-extrabold tracking-[-0.03em]"
+            >
+              {t} <span className="text-primary">✦</span>
+            </span>
+          ))}
+        </Marquee>
+      </div>
+
+      <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 border-t border-border px-7 py-7">
+        <span className="font-mono text-xs text-muted-foreground/70">
+          © 2026 Novodip. Built with care.
+        </span>
+        <a
+          href="#top"
+          className="inline-flex items-center gap-2 font-mono text-xs text-muted-foreground/70 transition-colors hover:text-primary"
+        >
+          BACK TO TOP ↑
+        </a>
+      </div>
+    </footer>
   )
 }
 

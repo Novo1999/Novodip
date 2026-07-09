@@ -1,68 +1,65 @@
 import experienceData from '@/data/experience.json'
-import { motion, useInView } from 'framer-motion'
-import { Dot } from 'lucide-react'
-import { useRef } from 'react'
+import Reveal from '@/components/Reveal'
+
+// Data is authored oldest-first; show most recent at the top.
+const experiences = [...experienceData.experiences].reverse()
 
 const ExperienceSection = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
     <section
       id="experience"
-      className="py-32 relative"
-      aria-label="Work experience"
+      data-screen-label="Experience"
+      className="mx-auto max-w-[1280px] px-7 py-24"
     >
-      <div className="container mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="text-sm font-mono text-primary mb-4">
-            {experienceData.sectionLabel}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-16">
-            {experienceData.heading}
-          </h2>
-        </motion.div>
-
-        <div className="relative max-w-2xl">
-          <div
-            className="absolute left-[7px] top-2 bottom-2 w-px bg-white/50"
-            aria-hidden="true"
-          />
-
-          <div className="space-y-12">
-            {experienceData.experiences.map((exp, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="relative pl-10"
-              >
-                <div
-                  className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full bg-background gradient-border"
-                  aria-hidden="true"
-                />
-                <p className="text-xs font-mono text-primary mb-1">
-                  {exp.period}
-                </p>
-                <h3 className="text-lg font-semibold">{exp.role}</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {exp.company}
-                </p>
-                {exp.description.map((item) => (
-                  <li className="list-none flex mb-2" key={item}>
-                    <Dot /> 
-                    <p>{item}</p>
-                  </li>
-                ))}
-              </motion.div>
-            ))}
-          </div>
+      <Reveal>
+        <div className="mb-14 flex items-center gap-3.5">
+          <span className="font-mono text-[13px] tracking-[0.05em] text-primary">
+            03
+          </span>
+          <span className="h-px w-8 bg-white/20" />
+          <span className="eyebrow">Experience</span>
         </div>
+      </Reveal>
+
+      <Reveal>
+        <h2 className="m-0 mb-16 font-display text-[clamp(2.4rem,6vw,4.4rem)] font-extrabold leading-[0.95] tracking-[-0.04em]">
+          Where I&apos;ve worked.
+        </h2>
+      </Reveal>
+
+      <div className="flex flex-col">
+        {experiences.map((e) => (
+          <Reveal key={e.company}>
+            <div className="grid grid-cols-1 gap-5 border-t border-white/10 py-10 md:grid-cols-[240px_1fr]">
+              <div className="flex items-center gap-4">
+                <span className="h-[11px] w-[11px] shrink-0 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary))]" />
+                <span className="font-mono text-sm tracking-wide text-foreground/85">
+                  {e.period}
+                </span>
+              </div>
+              <div>
+                <h3 className="m-0 mb-1 font-display text-[clamp(1.5rem,3vw,2.2rem)] font-bold leading-[1.05] tracking-[-0.02em]">
+                  {e.role}
+                </h3>
+                <div className="mb-5 text-[1.05rem] font-semibold text-primary">
+                  {e.company}
+                </div>
+                <ul className="m-0 flex list-none flex-col gap-3 p-0">
+                  {e.description.map((d) => (
+                    <li
+                      key={d}
+                      className="flex gap-3 text-[1.02rem] leading-normal text-muted-foreground"
+                    >
+                      <span className="shrink-0 text-primary">—</span>
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+        <div className="border-t border-white/10" />
       </div>
     </section>
   )

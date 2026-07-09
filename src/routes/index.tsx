@@ -10,20 +10,20 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
   component: App,
-  notFoundComponent: () => {
-    return <NotFound />
-  },
+  notFoundComponent: () => <NotFound />,
   head: injectHeadForSEO,
 })
 
 function App() {
   return (
-    <div className="min-h-screen bg-background noise-bg">
+    <div className="min-h-screen bg-background">
+      {/* Header + ScrollProgress are mounted globally in __root.tsx */}
+      {/* Section numbering follows the design: 01 About · 02 Work · 03 Experience · 04 Skills · 05 Contact */}
       <HeroSection />
+      <AboutSection />
+      <ProjectsSection />
       <ExperienceSection />
       <SkillsSection />
-      <ProjectsSection />
-      <AboutSection />
       <ContactSection />
     </div>
   )

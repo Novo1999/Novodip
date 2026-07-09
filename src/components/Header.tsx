@@ -1,150 +1,100 @@
-import ResumeModal from '#/components/ResumeModal'
-import ScrollProgress from '#/components/ScrollProgress'
-import { supabase } from '#/lib/supabase'
-import { Menu, X } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 
-const navLinks = [
-  { label: 'About', href: '/#about' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Experience', href: '/#experience' },
-  { label: 'Contact', href: '/#contact' },
+const NAV = [
+  { label: 'About', href: '#about' },
+  { label: 'Work', href: '#work' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Contact', href: '#contact' },
 ]
 
-const incrementResumeClickCount = async () => {
-  const allowedOrigins = [
-    'https://novodip.netlify.app',
-    'https://www.novodip.netlify.app',
-  ]
-
-  if (!allowedOrigins.includes(window.location.origin)) return
-
-  await supabase.rpc('increment_resume_count')
-}
-
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [resumeOpen, setResumeOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
+  // lock body scroll while the mobile sheet is open
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    document.body.style.overflow = open ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
-  }, [mobileOpen])
+  }, [open])
 
   return (
     <>
-      <ScrollProgress />
-      <ResumeModal open={resumeOpen} onOpenChange={setResumeOpen} />
-
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled || mobileOpen ? 'glass-card' : ''
-        }`}
-      >
-        <div className="container mx-auto flex items-center justify-between h-16 px-6">
-          <a href="/" className="text-lg font-bold gradient-text">
-            Novodip
+      <header className="fixed inset-x-0 top-[3px] z-[150] border-b border-border/70 bg-background/55 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-5 px-7 py-4">
+          <a href="#top" className="flex items-center gap-3 text-foreground">
+            <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
+            <span className="font-display text-[19px] font-extrabold tracking-tight">
+              Novodip
+            </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+          {/* desktop nav */}
+          <nav className="hidden items-center gap-0.5 md:flex">
+            {NAV.map((n) => (
               <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                key={n.href}
+                href={n.href}
+                className="rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
               >
-                {link.label}
+                {n.label}
               </a>
             ))}
+          </nav>
 
-            <button
-              onClick={async () => {
-                setResumeOpen(true)
-                await incrementResumeClickCount()
-              }}
-              className="text-sm underline underline-offset-8 animate-pulse py-3 rounded-lg text-muted-foreground hover:text-foreground transition-colors"
+          <div className="flex items-center gap-2.5">
+            <a
+              href="/resume/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-[9px] bg-primary px-4 py-2.5 text-[13.5px] font-bold tracking-tight text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-6px_hsl(var(--primary))]"
             >
-              My Resume
+              Résumé ↗
+            </a>
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="inline-flex h-[42px] w-[42px] items-center justify-center rounded-[9px] border border-border text-lg text-foreground md:hidden"
+            >
+              ≡
             </button>
           </div>
-
-          <a
-            href="#contact"
-            className="hidden md:inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity btn-gradient"
-          >
-            Get in Touch
-          </a>
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
         </div>
-      </motion.nav>
+      </header>
 
       <AnimatePresence>
-        {mobileOpen && (
+        {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-30 bg-background/95 backdrop-blur-md pt-20 px-6 md:hidden"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[180] flex flex-col bg-background/97 px-7 pb-10 pt-[90px] backdrop-blur-md"
           >
-            <nav className="flex flex-col gap-2">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="text-lg py-3 px-4 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-
-              <button
-                onClick={() => {
-                  setMobileOpen(false)
-                  setResumeOpen(true)
-                }}
-                className="text-lg py-3 px-4 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                My Resume
-              </button>
-
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+              className="absolute right-6 top-5 flex h-11 w-11 items-center justify-center rounded-[10px] border border-border text-2xl text-foreground"
+            >
+              ✕
+            </button>
+            {NAV.map((n, i) => (
               <a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
-                className="mt-4 inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                key={n.href}
+                href={n.href}
+                onClick={() => setOpen(false)}
+                className={`border-b border-white/10 py-3.5 font-display text-4xl font-bold tracking-tight ${
+                  i === NAV.length - 1
+                    ? 'border-none text-primary'
+                    : 'text-foreground'
+                }`}
               >
-                Get in Touch
+                {n.label}
+                {i === NAV.length - 1 ? ' →' : ''}
               </a>
-            </nav>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>
