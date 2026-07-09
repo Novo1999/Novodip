@@ -2,6 +2,7 @@ import Reveal from '@/components/Reveal'
 import projectsData from '@/data/projects.json'
 import { Link } from '@tanstack/react-router'
 import { ArrowUpRight, Code2, Globe, Server } from 'lucide-react'
+import type { ReactNode } from 'react'
 
 type Project = {
   title: string
@@ -13,7 +14,11 @@ type Project = {
   backend: string
 }
 
+type ProjectLinkSet = Pick<Project, 'live' | 'frontend' | 'backend'>
+
 const projects = projectsData.projects as Project[]
+const [docuflash, moneymate] = projects
+const rest = projects.slice(2)
 
 const domainOf = (url: string) => {
   try {
@@ -23,9 +28,36 @@ const domainOf = (url: string) => {
   }
 }
 
+const BG_WARM = 'radial-gradient(120% 120% at 80% 10%,#2a1a12,#0c0d0e)'
+const BG_COOL = 'radial-gradient(120% 120% at 20% 10%,#12202a,#0c0d0e)'
+const BG_EMBER = 'radial-gradient(120% 120% at 20% 10%,#241810,#0c0d0e)'
+const BG_SAND = 'radial-gradient(120% 120% at 80% 10%,#1f1c14,#0c0d0e)'
+
+const DOCUFLASH_MOBILE_SHOTS = [
+  {
+    src: '/thumbnails/docuflash_1.jpeg',
+    alt: 'Docuflash Mobile upload screen',
+    tilt: '-5deg',
+  },
+  {
+    src: '/thumbnails/docuflash_2.jpeg',
+    alt: 'Docuflash Mobile uploads list',
+    tilt: '0deg',
+  },
+  {
+    src: '/thumbnails/docuflash_3.jpeg',
+    alt: 'Docuflash Mobile profile screen',
+    tilt: '5deg',
+  },
+]
+
 const TASKATASK_SHOTS = [
   { src: '/Taskatask/taskatask-chat.jpg', alt: 'TaskaTask chat', tilt: '-5deg' },
-  { src: '/Taskatask/taskatask-map.jpg', alt: 'TaskaTask live map', tilt: '0deg' },
+  {
+    src: '/Taskatask/taskatask-map.jpg',
+    alt: 'TaskaTask live map',
+    tilt: '0deg',
+  },
   {
     src: '/Taskatask/taskatask-createtask.jpg',
     alt: 'TaskaTask create task',
@@ -45,21 +77,21 @@ const LINK_META = [
 ] as const
 
 const ProjectLinks = ({
-  project,
+  links,
   className = '',
 }: {
-  project: Project
+  links: ProjectLinkSet
   className?: string
 }) => {
-  const links = LINK_META.filter(({ key }) => project[key])
-  if (links.length === 0) return null
+  const available = LINK_META.filter(({ key }) => links[key])
+  if (available.length === 0) return null
 
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
-      {links.map(({ key, label, Icon }) => (
+      {available.map(({ key, label, Icon }) => (
         <a
           key={key}
-          href={project[key]}
+          href={links[key]}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-[12.5px] font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
@@ -92,29 +124,29 @@ const BrowserFrame = ({ project }: { project: Project }) => (
   </div>
 )
 
-const FEATURE_BG = [
-  'radial-gradient(120% 120% at 80% 10%,#2a1a12,#0c0d0e)',
-  'radial-gradient(120% 120% at 20% 10%,#12202a,#0c0d0e)',
-]
+const cardShell =
+  'mb-6 overflow-hidden rounded-[22px] border border-border bg-card transition-colors hover:border-primary'
 
+/** Large web project card: browser screenshot on one side, details on the other. */
 const FeaturedProject = ({
   project,
-  index,
+  number,
+  background,
   reverse = false,
 }: {
   project: Project
-  index: number
+  number: string
+  background: string
   reverse?: boolean
 }) => (
   <Reveal>
-    <div className="mb-6 overflow-hidden rounded-[22px] border border-border bg-card transition-colors hover:border-primary">
+    <div className={cardShell}>
       <div className="grid grid-cols-1 md:grid-cols-2">
-        {/* preview */}
         <a
           href={project.live || project.frontend}
           target="_blank"
           rel="noreferrer"
-          style={{ background: FEATURE_BG[index % FEATURE_BG.length] }}
+          style={{ background }}
           className={`flex min-h-[300px] items-center justify-center border-b border-border p-8 md:border-b-0 md:p-10 ${
             reverse ? 'md:order-2 md:border-l' : 'md:order-1 md:border-r'
           }`}
@@ -122,7 +154,6 @@ const FeaturedProject = ({
           <BrowserFrame project={project} />
         </a>
 
-        {/* details */}
         <div
           className={`flex flex-col justify-between gap-8 p-7 md:p-13 ${
             reverse ? 'md:order-1' : 'md:order-2'
@@ -130,7 +161,7 @@ const FeaturedProject = ({
         >
           <div>
             <span className="mb-5 block font-mono text-xs text-primary">
-              {String(index + 1).padStart(2, '0')} / FEATURED
+              {number} / FEATURED
             </span>
             <h3 className="m-0 mb-4 font-display text-[clamp(2.2rem,4vw,3.4rem)] font-bold leading-none tracking-[-0.03em]">
               {project.title}
@@ -145,7 +176,7 @@ const FeaturedProject = ({
                 <Tag key={t}>{t}</Tag>
               ))}
             </div>
-            <ProjectLinks project={project} />
+            <ProjectLinks links={project} />
           </div>
         </div>
       </div>
@@ -153,168 +184,232 @@ const FeaturedProject = ({
   </Reveal>
 )
 
-const ProjectsSection = () => {
-  const featured = projects.slice(0, 2) // Docuflash, Moneymate
-  const rest = projects.slice(2)
-
-  return (
-    <section
-      id="work"
-      data-screen-label="Projects"
-      className="mx-auto max-w-[1280px] px-7 py-24"
-    >
-      {/* header */}
-      <Reveal>
-        <div className="mb-15 flex flex-wrap items-end justify-between gap-5">
-          <div>
-            <div className="mb-5 flex items-center gap-3.5">
-              <span className="font-mono text-[13px] tracking-[0.05em] text-primary">
-                02
-              </span>
-              <span className="h-px w-8 bg-white/20" />
-              <span className="eyebrow">Selected Work</span>
+/** Mobile project card: tilted phone screenshots on one side, details on the other. */
+const MobileShowcase = ({
+  title,
+  description,
+  number,
+  badge,
+  stack,
+  shots,
+  background,
+  reverse = false,
+  children,
+}: {
+  title: string
+  description: ReactNode
+  number: string
+  badge: string
+  stack: string[]
+  shots: Array<{ src: string; alt: string; tilt: string }>
+  background: string
+  reverse?: boolean
+  children: ReactNode
+}) => (
+  <Reveal>
+    <div className={cardShell}>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div
+          style={{ background }}
+          className={`flex min-h-[340px] items-center justify-center gap-4 overflow-hidden border-b border-border px-5 py-11 md:border-b-0 ${
+            reverse ? 'md:order-2 md:border-l' : 'md:order-1 md:border-r'
+          }`}
+        >
+          {shots.map((s, i) => (
+            <div
+              key={s.src}
+              style={{
+                transform: `rotate(${s.tilt}) translateY(${i === 1 ? 0 : 14}px)`,
+              }}
+              className={`w-[150px] overflow-hidden rounded-[22px] border-[5px] border-[#1b1b1e] shadow-[var(--shadow-card)] ${
+                i === 1 ? 'z-10 w-[158px]' : ''
+              }`}
+            >
+              <img
+                src={s.src}
+                alt={s.alt}
+                className="block w-full"
+                loading="lazy"
+              />
             </div>
-            <h2 className="m-0 font-display text-[clamp(2.6rem,7vw,5.2rem)] font-extrabold leading-[0.92] tracking-[-0.04em]">
-              Things I&apos;ve
-              <br />
-              shipped.
-            </h2>
-          </div>
-          <span className="font-mono text-[13px] text-muted-foreground/70">
-            10 PROJECTS
-          </span>
+          ))}
         </div>
-      </Reveal>
 
-      {/* FEATURED — Docuflash, then Moneymate */}
-      {featured.map((project, i) => (
-        <FeaturedProject
-          key={project.title}
-          project={project}
-          index={i}
-          reverse={i % 2 === 1}
-        />
-      ))}
-
-      {/* TaskaTask — private mobile product, screenshots on the case-study page */}
-      <Reveal>
-        <div className="mb-6 overflow-hidden rounded-[22px] border border-border bg-card transition-colors hover:border-primary">
-          <div className="grid grid-cols-1 md:grid-cols-[1.05fr_1fr]">
-            <div className="flex min-h-[340px] items-center justify-center gap-4 overflow-hidden border-b border-border bg-[radial-gradient(120%_120%_at_20%_10%,#241810,#0c0d0e)] px-5 py-11 md:border-b-0 md:border-r">
-              {TASKATASK_SHOTS.map((s, i) => (
-                <div
-                  key={s.src}
-                  style={{
-                    transform: `rotate(${s.tilt}) translateY(${i === 1 ? 0 : 14}px)`,
-                  }}
-                  className={`w-[150px] overflow-hidden rounded-[22px] border-[5px] border-[#1b1b1e] shadow-[var(--shadow-card)] ${
-                    i === 1 ? 'z-10 w-[158px]' : ''
-                  }`}
-                >
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    className="block w-full"
-                    loading="lazy"
-                  />
-                </div>
+        <div
+          className={`flex flex-col justify-between gap-8 p-7 md:p-13 ${
+            reverse ? 'md:order-1' : 'md:order-2'
+          }`}
+        >
+          <div>
+            <div className="mb-5 flex items-center gap-2.5">
+              <span className="font-mono text-xs text-primary">
+                {number} / MOBILE
+              </span>
+              <span className="rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-muted-foreground/70">
+                {badge}
+              </span>
+            </div>
+            <h3 className="m-0 mb-4 font-display text-[clamp(2.2rem,4vw,3.4rem)] font-bold leading-none tracking-[-0.03em]">
+              {title}
+            </h3>
+            <p className="m-0 max-w-[46ch] text-[1.05rem] leading-relaxed text-muted-foreground">
+              {description}
+            </p>
+          </div>
+          <div>
+            <div className="mb-6 flex flex-wrap gap-2">
+              {stack.map((t) => (
+                <Tag key={t}>{t}</Tag>
               ))}
             </div>
-            <div className="flex flex-col justify-between gap-8 p-7 md:p-13">
-              <div>
-                <div className="mb-5 flex items-center gap-2.5">
-                  <span className="font-mono text-xs text-primary">
-                    03 / MOBILE
-                  </span>
-                  <span className="rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-muted-foreground/70">
-                    ENTERPRISE
-                  </span>
-                </div>
-                <h3 className="m-0 mb-4 font-display text-[clamp(2.2rem,4vw,3.4rem)] font-bold leading-none tracking-[-0.03em]">
-                  TaskaTask
-                </h3>
-                <p className="m-0 max-w-[46ch] text-[1.05rem] leading-relaxed text-muted-foreground">
-                  A field-service mobile app built at Dhrubok Infotech — in-app
-                  chat, live maps &amp; geolocation, and task scheduling.
-                  Shipped with Expo &amp; React Native, state managed with
-                  Redux.
-                </p>
-              </div>
-              <div>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {['React Native', 'Expo', 'Redux Toolkit', 'TypeScript'].map(
-                    (t) => (
-                      <Tag key={t}>{t}</Tag>
-                    ),
-                  )}
-                </div>
-                <Link
-                  to="/project"
-                  className="inline-flex items-center gap-1.5 font-semibold text-primary"
-                >
-                  View case study <ArrowUpRight className="h-[18px] w-[18px]" />
-                </Link>
-              </div>
-            </div>
+            {children}
           </div>
         </div>
-      </Reveal>
-
-      {/* COMPACT GRID — remaining projects */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {rest.map((p, i) => {
-          const primary = p.live || p.frontend
-          return (
-            <Reveal key={p.title} delay={(i % 3) * 0.06}>
-              <div className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-border bg-card transition-all hover:-translate-y-1.5 hover:border-primary">
-                <a
-                  href={primary || undefined}
-                  target={primary ? '_blank' : undefined}
-                  rel={primary ? 'noreferrer' : undefined}
-                  className="relative block aspect-[16/10] overflow-hidden border-b border-border bg-secondary"
-                >
-                  <img
-                    src={p.thumbnail}
-                    alt={`${p.title} preview`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <span className="absolute right-3 top-3 rounded bg-black/50 px-1.5 py-0.5 font-mono text-[11px] text-primary backdrop-blur-sm">
-                    {String(i + 4).padStart(2, '0')}
-                  </span>
-                  <span className="absolute bottom-3 left-3.5 font-mono text-[10.5px] text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">
-                    {domainOf(p.live || p.frontend)}
-                  </span>
-                </a>
-                <div className="flex flex-1 flex-col gap-3.5 p-[22px]">
-                  <div className="flex items-center justify-between gap-2.5">
-                    <h3 className="m-0 font-display text-[1.45rem] font-bold tracking-[-0.02em]">
-                      {p.title}
-                    </h3>
-                    <ArrowUpRight className="h-[18px] w-[18px] shrink-0 text-primary" />
-                  </div>
-                  <p className="m-0 flex-1 text-[0.92rem] leading-relaxed text-muted-foreground">
-                    {p.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.stack.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-md border border-border px-2.5 py-1 font-mono text-[10.5px] text-muted-foreground"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <ProjectLinks project={p} className="pt-1" />
-                </div>
-              </div>
-            </Reveal>
-          )
-        })}
       </div>
-    </section>
-  )
-}
+    </div>
+  </Reveal>
+)
+
+const ProjectsSection = () => (
+  <section
+    id="work"
+    data-screen-label="Projects"
+    className="mx-auto max-w-[1280px] px-7 py-24"
+  >
+    {/* header */}
+    <Reveal>
+      <div className="mb-15 flex flex-wrap items-end justify-between gap-5">
+        <div>
+          <div className="mb-5 flex items-center gap-3.5">
+            <span className="font-mono text-[13px] tracking-[0.05em] text-primary">
+              02
+            </span>
+            <span className="h-px w-8 bg-white/20" />
+            <span className="eyebrow">Selected Work</span>
+          </div>
+          <h2 className="m-0 font-display text-[clamp(2.6rem,7vw,5.2rem)] font-extrabold leading-[0.92] tracking-[-0.04em]">
+            Things I&apos;ve
+            <br />
+            shipped.
+          </h2>
+        </div>
+        <span className="font-mono text-[13px] text-muted-foreground/70">
+          11 PROJECTS
+        </span>
+      </div>
+    </Reveal>
+
+    {/* 01 — Docuflash (web) */}
+    <FeaturedProject project={docuflash} number="01" background={BG_WARM} />
+
+    {/* 02 — Docuflash Mobile */}
+    <MobileShowcase
+      number="02"
+      badge="EXPO"
+      title="Docuflash Mobile"
+      description="The React Native companion to Docuflash — pick up to 5 files, lock them behind a password, and hand out encrypted links that self-delete after 1 hour to 30 days. Native Google Sign-In, secure session storage, and light/dark theming."
+      stack={[
+        'Expo SDK 56',
+        'React Native',
+        'React 19',
+        'Expo Router',
+        'UploadThing',
+        'TypeScript',
+      ]}
+      shots={DOCUFLASH_MOBILE_SHOTS}
+      background={BG_SAND}
+      reverse
+    >
+      <ProjectLinks
+        links={{
+          live: '',
+          frontend: '',
+          backend: 'https://github.com/Novo1999/Docuflash-Backend',
+        }}
+      />
+    </MobileShowcase>
+
+    {/* 03 — Moneymate */}
+    <FeaturedProject project={moneymate} number="03" background={BG_COOL} />
+
+    {/* 04 — TaskaTask (private company product) */}
+    <MobileShowcase
+      number="04"
+      badge="ENTERPRISE"
+      title="TaskaTask"
+      description={
+        <>
+          A field-service mobile app built at Dhrubok Infotech — in-app chat,
+          live maps &amp; geolocation, and task scheduling. Shipped with Expo
+          &amp; React Native, state managed with Redux.
+        </>
+      }
+      stack={['React Native', 'Expo', 'Redux Toolkit', 'TypeScript']}
+      shots={TASKATASK_SHOTS}
+      background={BG_EMBER}
+    >
+      <Link
+        to="/project"
+        className="inline-flex items-center gap-1.5 font-semibold text-primary"
+      >
+        View case study <ArrowUpRight className="h-[18px] w-[18px]" />
+      </Link>
+    </MobileShowcase>
+
+    {/* COMPACT GRID — remaining projects */}
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {rest.map((p, i) => {
+        const primary = p.live || p.frontend
+        return (
+          <Reveal key={p.title} delay={(i % 3) * 0.06}>
+            <div className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-border bg-card transition-all hover:-translate-y-1.5 hover:border-primary">
+              <a
+                href={primary || undefined}
+                target={primary ? '_blank' : undefined}
+                rel={primary ? 'noreferrer' : undefined}
+                className="relative block aspect-[16/10] overflow-hidden border-b border-border bg-secondary"
+              >
+                <img
+                  src={p.thumbnail}
+                  alt={`${p.title} preview`}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <span className="absolute right-3 top-3 rounded bg-black/50 px-1.5 py-0.5 font-mono text-[11px] text-primary backdrop-blur-sm">
+                  {String(i + 5).padStart(2, '0')}
+                </span>
+                <span className="absolute bottom-3 left-3.5 font-mono text-[10.5px] text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">
+                  {domainOf(primary)}
+                </span>
+              </a>
+              <div className="flex flex-1 flex-col gap-3.5 p-[22px]">
+                <div className="flex items-center justify-between gap-2.5">
+                  <h3 className="m-0 font-display text-[1.45rem] font-bold tracking-[-0.02em]">
+                    {p.title}
+                  </h3>
+                  <ArrowUpRight className="h-[18px] w-[18px] shrink-0 text-primary" />
+                </div>
+                <p className="m-0 flex-1 text-[0.92rem] leading-relaxed text-muted-foreground">
+                  {p.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {p.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-md border border-border px-2.5 py-1 font-mono text-[10.5px] text-muted-foreground"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <ProjectLinks links={p} className="pt-1" />
+              </div>
+            </div>
+          </Reveal>
+        )
+      })}
+    </div>
+  </section>
+)
 
 export default ProjectsSection
