@@ -3,6 +3,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TooltipProvider } from '#/components/ui/tooltip'
 import NotFound from '#/routes/not-found'
 import Header from '../components/Header'
+import IntroPrompt from '../components/IntroPrompt'
 import ScrollProgress from '../components/ScrollProgress'
 import appCss from '../styles.css?url'
 
@@ -46,6 +47,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ScrollProgress />
         <Header />
         <TooltipProvider>{children}</TooltipProvider>
+        <IntroPrompt />
         {/* <TanStackDevtools
           config={{
             position: 'bottom-right',
