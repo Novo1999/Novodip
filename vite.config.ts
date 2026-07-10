@@ -17,18 +17,23 @@ const config = defineConfig({
     netlify(),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
-    tanstackStart(),
-    viteReact(),
     tanstackStart({
+      // The two real routes are listed explicitly rather than discovered with
+      // crawlLinks. Crawling followed every <a href>, which pulled in the
+      // hash links (/#about …) and, worse, /resume/resume.pdf — prerendering
+      // that re-encoded the binary as UTF-8 text and overwrote the real PDF in
+      // dist/client, so the deployed resume would not open.
+      pages: [{ path: '/' }, { path: '/project' }],
       prerender: {
         enabled: true,
-        crawlLinks: true,
+        crawlLinks: false,
       },
       sitemap: {
         enabled: true,
         host: 'https://novodip.netlify.app/',
       },
     }),
+    viteReact(),
   ],
 })
 

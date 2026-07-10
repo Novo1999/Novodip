@@ -290,7 +290,7 @@ const ProjectsSection = () => (
           <h2 className="m-0 font-display text-[clamp(2.6rem,7vw,5.2rem)] font-extrabold leading-[0.92] tracking-[-0.04em]">
             Things I&apos;ve
             <br />
-            shipped.
+            built.
           </h2>
         </div>
         <span className="font-mono text-[13px] text-muted-foreground/70">
