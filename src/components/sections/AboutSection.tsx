@@ -1,4 +1,5 @@
 import aboutData from '@/data/about.json'
+import AccentAvatar from '@/components/AccentAvatar'
 import Reveal from '@/components/Reveal'
 
 const SectionLabel = ({ n, label }: { n: string; label: string }) => (
@@ -26,11 +27,10 @@ const AboutSection = () => {
         <Reveal>
           <div className="relative w-[min(340px,80vw)]">
             <div className="pointer-events-none absolute inset-0 translate-x-4 translate-y-4 rounded-[20px] border-2 border-primary" />
-            <img
-              src="/portfolio-avatar.png"
+            <AccentAvatar
               alt="Novodip"
-              className="relative block w-full rounded-[20px] border border-border bg-card"
               loading="lazy"
+              className="relative w-full rounded-[20px] border border-border bg-card"
             />
           </div>
         </Reveal>

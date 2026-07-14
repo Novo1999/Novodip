@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Link } from '@tanstack/react-router'
+import AccentAvatar from './AccentAvatar'
 
 // Header is mounted globally, so these must resolve against the home route
 // rather than the current one — a bare "#about" does nothing on /project.
@@ -32,11 +33,7 @@ const Header = () => {
             hash="top"
             className="flex items-center gap-3 text-foreground"
           >
-            <img
-              src="/portfolio-avatar.png"
-              alt=""
-              className="h-8 w-8 rounded-full border border-primary/60 object-cover shadow-[0_0_10px_hsl(var(--primary)/0.45)]"
-            />
+            <AccentAvatar className="h-8 w-8 rounded-full border border-primary/60 object-cover shadow-[0_0_10px_hsl(var(--primary)/0.45)]" />
             <span className="font-display text-[19px] font-extrabold tracking-tight">
               Novodip
             </span>

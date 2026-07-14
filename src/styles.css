@@ -140,6 +140,19 @@
     text-transform: uppercase;
   }
 
+  /* avatar variants rendered by AccentAvatar.tsx — show only the one
+     matching the active accent (default: orange). Don't pass display
+     utilities (e.g. `block`) to AccentAvatar, they would override this. */
+  .accent-avatar-img {
+    display: none;
+  }
+  :root:not([data-accent]) .accent-avatar-img[data-accent-img='orange'],
+  :root[data-accent='teal'] .accent-avatar-img[data-accent-img='teal'],
+  :root[data-accent='blue'] .accent-avatar-img[data-accent-img='blue'],
+  :root[data-accent='yellow'] .accent-avatar-img[data-accent-img='yellow'] {
+    display: block;
+  }
+
   .tag {
     font-family: var(--font-mono);
     font-size: 0.72rem;
