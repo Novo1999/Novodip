@@ -18,22 +18,12 @@
     {
       "title": "Backend",
       "icon": "Server",
-      "skills": [
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "REST APIs",
-        "PostgreSQL"
-      ]
+      "skills": ["Node.js", "Express.js", "MongoDB", "REST APIs", "PostgreSQL"]
     },
     {
       "title": "Tools",
       "icon": "Wrench",
-      "skills": [
-        "Git",
-        "Docker",
-        "Vercel"
-      ]
+      "skills": ["Git", "Docker", "Vercel"]
     }
   ]
 }

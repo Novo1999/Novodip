@@ -40,6 +40,7 @@ Note: there is no typecheck script — TS is `noEmit`. Run `npx tsc --noEmit` to
 **UI primitives** in `src/components/ui/` are shadcn/ui (style `radix-nova`, see `components.json`). Merge classes with `cn()` from `src/lib/utils.ts`.
 
 **Integrations** (all via `VITE_*` env vars in `.env`, read through `import.meta.env`):
+
 - `lib/supabase.ts` — Supabase client (analytics / resume-view count).
 - `lib/sendEmail.ts` — EmailJS for the contact form; shows `sonner` toasts.
 - `lib/seo.ts` — `injectHeadForSEO` returns meta/OG/Twitter tags + JSON-LD; wired into route `head` options.

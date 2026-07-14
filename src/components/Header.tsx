@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Link } from '@tanstack/react-router'
+import AccentPicker from './AccentPicker'
 
 // Header is mounted globally, so these must resolve against the home route
 // rather than the current one — a bare "#about" does nothing on /project.
@@ -53,6 +54,7 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2.5">
+            <AccentPicker />
             <a
               href="/resume/resume.pdf"
               target="_blank"

@@ -13,28 +13,28 @@ The goal of this project is to present my work, experiments, and technical capab
 
 ## 🛠 Tech Stack
 
-* **TanStack Start** – Full-stack React framework
-* **React** – UI library
-* **TypeScript** – Static typing
-* **Tailwind CSS** – Styling
-* **Framer Motion** – Animations
-* **Supabase** – Analytics & small backend utilities
-* **Lucide Icons** – Icon set
-* **Vite** – Development tooling
+- **TanStack Start** – Full-stack React framework
+- **React** – UI library
+- **TypeScript** – Static typing
+- **Tailwind CSS** – Styling
+- **Framer Motion** – Animations
+- **Supabase** – Analytics & small backend utilities
+- **Lucide Icons** – Icon set
+- **Vite** – Development tooling
 
 ---
 
 ## ✨ Features
 
-* Responsive modern UI
-* Animated sections using Framer Motion
-* Resume modal with zoom and download
-* Project showcase
-* Contact section
-* Mobile navigation menu
-* Resume click tracking via Supabase
-* Smooth scrolling navigation
-* Scroll progress indicator
+- Responsive modern UI
+- Animated sections using Framer Motion
+- Resume modal with zoom and download
+- Project showcase
+- Contact section
+- Mobile navigation menu
+- Resume click tracking via Supabase
+- Smooth scrolling navigation
+- Scroll progress indicator
 
 ---
 
@@ -96,7 +96,6 @@ npm run build
 The portfolio tracks resume interactions using **Supabase** to count how many times the resume is opened or downloaded.
 
 ---
-
 
 ---
 

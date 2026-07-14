@@ -11,7 +11,8 @@ import { useCallback, useEffect, useState } from 'react'
  * client-side route changes. Respects `prefers-reduced-motion`.
  */
 
-const PROMPT = 'Build me a sleek developer portfolio — projects, skills & contact.'
+const PROMPT =
+  'Build me a sleek developer portfolio — projects, skills & contact.'
 const WORDS = ['Frolicking', 'Fathoming', 'Schlepping', 'Shipping']
 
 const TYPE_MS = 17 // per character
@@ -101,11 +102,11 @@ export default function IntroPrompt() {
   // Phase: thinking — cycle the whimsical words, then finish.
   useEffect(() => {
     if (phase !== 'thinking') return
-    const cycle = window.setInterval(
-      () => setWordIdx((n) => n + 1),
-      WORD_MS,
+    const cycle = window.setInterval(() => setWordIdx((n) => n + 1), WORD_MS)
+    const done = window.setTimeout(
+      () => setPhase('done'),
+      WORDS.length * WORD_MS,
     )
-    const done = window.setTimeout(() => setPhase('done'), WORDS.length * WORD_MS)
     return () => {
       window.clearInterval(cycle)
       window.clearTimeout(done)

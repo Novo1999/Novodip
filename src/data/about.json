@@ -5,5 +5,13 @@
     "I'm a frontend developer focused on building modern web and mobile applications that are fast, accessible, and thoughtfully designed. I primarily work with Next.js, React, React Native, TypeScript, and Tailwind CSS to create responsive interfaces and smooth user experiences across platforms.",
     "Beyond the interface, I also have experience with Node.js and PostgreSQL, giving me a solid understanding of the full stack. I value clean architecture, performance, and maintainable code, and I strive to build products that feel polished, reliable, and intuitive to use."
   ],
-  "highlights": ["Next.js", "React", "React Native", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"]
+  "highlights": [
+    "Next.js",
+    "React",
+    "React Native",
+    "TypeScript",
+    "Tailwind CSS",
+    "Node.js",
+    "PostgreSQL"
+  ]
 }
