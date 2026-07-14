@@ -347,7 +347,7 @@ const ProjectsSection = () => (
       <ProjectLinks
         links={{
           live: '',
-          frontend: '',
+          frontend: 'https://github.com/Novo1999/docuflash-mobile',
           backend: 'https://github.com/Novo1999/Docuflash-Backend',
         }}
       />
