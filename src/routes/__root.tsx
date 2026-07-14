@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
 import { TooltipProvider } from '#/components/ui/tooltip'
 import NotFound from '#/routes/not-found'
+import AccentPicker from '../components/AccentPicker'
 import Header from '../components/Header'
 import IntroPrompt from '../components/IntroPrompt'
 import ScrollProgress from '../components/ScrollProgress'
@@ -46,6 +47,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[hsl(var(--primary)/0.24)]">
         <ScrollProgress />
         <Header />
+        <AccentPicker />
         <TooltipProvider>{children}</TooltipProvider>
         <IntroPrompt />
         {/* <TanStackDevtools
