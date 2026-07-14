@@ -32,6 +32,8 @@ const BG_WARM = 'radial-gradient(120% 120% at 80% 10%,#2a1a12,#0c0d0e)'
 const BG_COOL = 'radial-gradient(120% 120% at 20% 10%,#12202a,#0c0d0e)'
 const BG_EMBER = 'radial-gradient(120% 120% at 20% 10%,#241810,#0c0d0e)'
 const BG_SAND = 'radial-gradient(120% 120% at 80% 10%,#1f1c14,#0c0d0e)'
+/** Teal, picked to echo MoneyMate Mobile's own palette. */
+const BG_TEAL = 'radial-gradient(120% 120% at 80% 10%,#0f2926,#0c0d0e)'
 
 const DOCUFLASH_MOBILE_SHOTS = [
   {
@@ -51,8 +53,30 @@ const DOCUFLASH_MOBILE_SHOTS = [
   },
 ]
 
+const MONEYMATE_MOBILE_SHOTS = [
+  {
+    src: '/thumbnails/moneymate_mobile_3.jpg',
+    alt: 'MoneyMate Mobile transactions list, filtered and grouped by day',
+    tilt: '-5deg',
+  },
+  {
+    src: '/thumbnails/moneymate_mobile_1.jpg',
+    alt: 'MoneyMate Mobile dashboard with balance hero and spending donut',
+    tilt: '0deg',
+  },
+  {
+    src: '/thumbnails/moneymate_mobile_2.jpg',
+    alt: 'MoneyMate Mobile accounts screen showing net worth',
+    tilt: '5deg',
+  },
+]
+
 const TASKATASK_SHOTS = [
-  { src: '/Taskatask/taskatask-chat.jpg', alt: 'TaskaTask chat', tilt: '-5deg' },
+  {
+    src: '/Taskatask/taskatask-chat.jpg',
+    alt: 'TaskaTask chat',
+    tilt: '-5deg',
+  },
   {
     src: '/Taskatask/taskatask-map.jpg',
     alt: 'TaskaTask live map',
@@ -294,7 +318,7 @@ const ProjectsSection = () => (
           </h2>
         </div>
         <span className="font-mono text-[13px] text-muted-foreground/70">
-          11 PROJECTS
+          12 PROJECTS
         </span>
       </div>
     </Reveal>
@@ -332,9 +356,36 @@ const ProjectsSection = () => (
     {/* 03 — Moneymate */}
     <FeaturedProject project={moneymate} number="03" background={BG_COOL} />
 
-    {/* 04 — TaskaTask (private company product) */}
+    {/* 04 — MoneyMate Mobile */}
     <MobileShowcase
       number="04"
+      badge="EXPO"
+      title="MoneyMate Mobile"
+      description="The native client for MoneyMate, sharing the web app's backend and API contracts. Balance hero and category spending donut, day-grouped transactions with type/category filters, gradient account cards with transfers, and native Google sign-in — with tokens in secure storage and transparent refresh on 401."
+      stack={[
+        'Expo SDK 56',
+        'React Native',
+        'React 19',
+        'Expo Router',
+        'Jotai',
+        'TypeScript',
+      ]}
+      shots={MONEYMATE_MOBILE_SHOTS}
+      background={BG_TEAL}
+      reverse
+    >
+      <ProjectLinks
+        links={{
+          live: '',
+          frontend: 'https://github.com/Novo1999/moneymate-mobile',
+          backend: 'https://github.com/Novo1999/moneymate-backend',
+        }}
+      />
+    </MobileShowcase>
+
+    {/* 05 — TaskaTask (private company product) */}
+    <MobileShowcase
+      number="05"
       badge="ENTERPRISE"
       title="TaskaTask"
       description={
@@ -376,7 +427,7 @@ const ProjectsSection = () => (
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute right-3 top-3 rounded bg-black/50 px-1.5 py-0.5 font-mono text-[11px] text-primary backdrop-blur-sm">
-                  {String(i + 5).padStart(2, '0')}
+                  {String(i + 6).padStart(2, '0')}
                 </span>
                 <span className="absolute bottom-3 left-3.5 font-mono text-[10.5px] text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">
                   {domainOf(primary)}

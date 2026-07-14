@@ -32,9 +32,6 @@ const AboutSection = () => {
               className="relative block w-full rounded-[20px] border border-border bg-card"
               loading="lazy"
             />
-            <span className="absolute -bottom-3.5 left-5 rounded-lg bg-primary px-3.5 py-2 font-mono text-xs font-bold tracking-wide text-primary-foreground">
-              git merge --polish
-            </span>
           </div>
         </Reveal>
 

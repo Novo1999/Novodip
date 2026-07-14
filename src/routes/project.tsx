@@ -8,5 +8,11 @@ export const Route = createFileRoute('/project')({
   notFoundComponent: () => {
     return <NotFound />
   },
-  head: injectHeadForSEO,
+  head: () =>
+    injectHeadForSEO({
+      path: '/project',
+      title: 'Taskatask — Case Study | Novodip',
+      description:
+        'A case study of Taskatask: a real-time field-service platform with in-app chat, live maps, and task scheduling, built with React Native, Expo, and Redux.',
+    }),
 })

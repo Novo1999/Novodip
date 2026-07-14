@@ -11,7 +11,7 @@ import { createFileRoute } from '@tanstack/react-router'
 export const Route = createFileRoute('/')({
   component: App,
   notFoundComponent: () => <NotFound />,
-  head: injectHeadForSEO,
+  head: () => injectHeadForSEO({ path: '/' }),
 })
 
 function App() {
