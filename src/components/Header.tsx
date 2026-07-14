@@ -32,7 +32,11 @@ const Header = () => {
             hash="top"
             className="flex items-center gap-3 text-foreground"
           >
-            <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
+            <img
+              src="/portfolio-avatar.png"
+              alt=""
+              className="h-8 w-8 rounded-full border border-primary/60 object-cover shadow-[0_0_10px_hsl(var(--primary)/0.45)]"
+            />
             <span className="font-display text-[19px] font-extrabold tracking-tight">
               Novodip
             </span>
