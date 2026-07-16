@@ -35,7 +35,7 @@ const ContactSection = () => {
         <Reveal>
           <div className="mb-14 flex flex-wrap items-center gap-4">
             <a
-              href="mailto:novorony52@gmail.com"
+              href="mailto:neptune.navo@gmail.com"
               className="inline-flex items-center gap-2.5 rounded-[13px] bg-primary px-7 py-[18px] text-[clamp(1rem,2vw,1.2rem)] font-bold tracking-tight text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-10px_hsl(var(--primary))]"
             >
               neptune.navo@gmail.com →
