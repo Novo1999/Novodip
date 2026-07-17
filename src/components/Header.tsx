@@ -6,10 +6,10 @@ import AccentAvatar from './AccentAvatar'
 // Header is mounted globally, so these must resolve against the home route
 // rather than the current one — a bare "#about" does nothing on /project.
 const NAV = [
-  { label: 'About', hash: 'about' },
-  { label: 'Work', hash: 'work' },
   { label: 'Experience', hash: 'experience' },
+  { label: 'Work', hash: 'work' },
   { label: 'Skills', hash: 'skills' },
+  { label: 'About', hash: 'about' },
   { label: 'Contact', hash: 'contact' },
 ]
 

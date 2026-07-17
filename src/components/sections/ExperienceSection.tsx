@@ -14,7 +14,7 @@ const ExperienceSection = () => {
       <Reveal>
         <div className="mb-14 flex items-center gap-3.5">
           <span className="font-mono text-[13px] tracking-[0.05em] text-primary">
-            03
+            01
           </span>
           <span className="h-px w-8 bg-white/20" />
           <span className="eyebrow">Experience</span>

@@ -20,7 +20,7 @@ const AboutSection = () => {
       className="mx-auto max-w-[1280px] px-7 py-24"
     >
       <Reveal>
-        <SectionLabel n="01" label="About" />
+        <SectionLabel n="04" label="About" />
       </Reveal>
 
       <div className="grid grid-cols-1 gap-14 md:grid-cols-[340px_1fr] md:items-start">

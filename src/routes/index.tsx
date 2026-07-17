@@ -18,12 +18,12 @@ function App() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header + ScrollProgress are mounted globally in __root.tsx */}
-      {/* Section numbering follows the design: 01 About · 02 Work · 03 Experience · 04 Skills · 05 Contact */}
+      {/* Section numbering follows the design: 01 Experience · 02 Work · 03 Skills · 04 About · 05 Contact */}
       <HeroSection />
-      <AboutSection />
-      <ProjectsSection />
       <ExperienceSection />
+      <ProjectsSection />
       <SkillsSection />
+      <AboutSection />
       <ContactSection />
     </div>
   )
