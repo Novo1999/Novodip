@@ -7,7 +7,7 @@ The goal of this project is to present my work, experiments, and technical capab
 
 ## 🚀 Live Demo
 
-🔗 https://novodip.netlify.app/
+🔗 [Novodip](https://novodip.site/)
 
 ---
 
