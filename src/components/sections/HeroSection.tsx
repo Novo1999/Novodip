@@ -67,14 +67,7 @@ const HeroSection = () => {
 
       <div className="relative">
         {/* status row */}
-        <motion.div
-          {...rise(0)}
-          className="mb-8 flex flex-wrap items-center gap-4"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/[0.06] px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.06em] text-primary">
-            <span className="h-2 w-2 animate-pulse-dot rounded-full bg-primary" />
-            {heroData.statusText}
-          </span>
+        <motion.div {...rise(0)} className="mb-8 flex flex-wrap items-center">
           <span className="font-mono text-xs tracking-[0.1em] text-muted-foreground/70">
             PORTFOLIO — DHAKA, BD / 2026
           </span>
