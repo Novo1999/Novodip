@@ -1,3 +1,4 @@
+import { ArrowDown } from 'lucide-react'
 import heroData from '@/data/hero.json'
 import Marquee from '@/components/Marquee'
 import AccentMascot from '@/components/AccentMascot'
@@ -112,7 +113,8 @@ const HeroSection = () => {
             href={heroData.ctaPrimary.href}
             className="inline-flex items-center gap-2.5 rounded-[11px] bg-primary px-6 py-4 text-base font-bold tracking-tight text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-8px_hsl(var(--primary))]"
           >
-            {heroData.ctaPrimary.label} →
+            {heroData.ctaPrimary.label}
+            <ArrowDown className="h-5 w-5" aria-hidden="true" />
           </a>
           <a
             href={heroData.ctaSecondary.href}
