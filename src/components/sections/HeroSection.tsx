@@ -1,6 +1,5 @@
 import heroData from '@/data/hero.json'
 import Marquee from '@/components/Marquee'
-import PortfolioMascot from '@/components/PortfolioMascot'
 import { motion } from 'motion/react'
 
 type IconProps = { className?: string }
@@ -94,9 +93,6 @@ const HeroSection = () => {
               {heroData.tagline}
             </p>
           </div>
-
-          {/* cursor-tracking avatar mascot */}
-          <PortfolioMascot />
         </motion.div>
 
         {/* CTAs + socials */}
