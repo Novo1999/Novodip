@@ -1,5 +1,6 @@
 import heroData from '@/data/hero.json'
 import Marquee from '@/components/Marquee'
+import PortfolioMascot from '@/components/PortfolioMascot'
 import { motion } from 'motion/react'
 
 type IconProps = { className?: string }
@@ -94,29 +95,8 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* rotating badge */}
-          <div className="relative h-[132px] w-[132px] shrink-0 animate-spin-slow">
-            <svg viewBox="0 0 132 132" className="h-full w-full">
-              <defs>
-                <path
-                  id="circPath"
-                  d="M 66,66 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
-                />
-              </defs>
-              <text
-                fill="hsl(var(--muted-foreground))"
-                className="font-mono"
-                style={{ fontSize: 11, letterSpacing: '0.28em' }}
-              >
-                <textPath href="#circPath">
-                  OPEN&nbsp;TO&nbsp;WORK&nbsp;•&nbsp;LET&apos;S&nbsp;BUILD&nbsp;•&nbsp;
-                </textPath>
-              </text>
-            </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-3xl text-primary">
-              ↓
-            </span>
-          </div>
+          {/* cursor-tracking avatar mascot */}
+          <PortfolioMascot />
         </motion.div>
 
         {/* CTAs + socials */}
