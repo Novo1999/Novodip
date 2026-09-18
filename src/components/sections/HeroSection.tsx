@@ -1,5 +1,6 @@
 import heroData from '@/data/hero.json'
 import Marquee from '@/components/Marquee'
+import AccentMascot from '@/components/AccentMascot'
 import { motion } from 'motion/react'
 
 type IconProps = { className?: string }
@@ -61,7 +62,7 @@ const HeroSection = () => {
       className="relative mx-auto flex min-h-screen max-w-[1280px] flex-col justify-center px-7 pt-[150px]"
       aria-label="Hero"
     >
-      {/* ambient orange glow + grid */}
+      {/* ambient accent glow + grid */}
       <div className="pointer-events-none absolute right-[6%] top-[14%] h-[340px] w-[340px] animate-float rounded-full bg-[radial-gradient(circle,hsl(var(--primary)),transparent_68%)] opacity-20 blur-[70px]" />
       <div className="grid-bg pointer-events-none absolute inset-0" />
 
@@ -82,7 +83,7 @@ const HeroSection = () => {
 
         <motion.div
           {...rise(0.16)}
-          className="mt-5 flex flex-wrap items-end justify-between gap-10"
+          className="mt-5 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center md:gap-10"
         >
           <div className="max-w-[640px]">
             <p className="mb-5 font-display text-[clamp(1.4rem,3.4vw,2.35rem)] font-semibold leading-[1.05] tracking-[-0.02em]">
@@ -92,6 +93,13 @@ const HeroSection = () => {
             <p className="m-0 max-w-[520px] text-[clamp(1rem,2vw,1.18rem)] leading-relaxed text-muted-foreground">
               {heroData.tagline}
             </p>
+          </div>
+          <div className="relative flex shrink-0 flex-col items-center self-center md:mr-8">
+            <div className="pointer-events-none absolute inset-4 rounded-full bg-primary/10 blur-2xl" />
+            <AccentMascot size={220} className="hero-mascot" />
+            <span className="relative mt-1 font-mono text-[10px] tracking-[0.16em] text-muted-foreground">
+              SAY HELLO — TAP ME
+            </span>
           </div>
         </motion.div>
 

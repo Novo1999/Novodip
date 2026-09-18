@@ -14,3 +14,8 @@ todos.json
 
 # Local Netlify folder
 .netlify
+
+# Local mascot build tools and visual checks
+.venv-mascot/
+.mascot-checks/
+__pycache__/

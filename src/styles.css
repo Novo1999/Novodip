@@ -88,24 +88,33 @@
 
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.25);
     --shadow-card: 0 24px 60px -20px hsl(0 0% 0% / 0.7);
+
+    --mascot-directions: url('/mascots/novodip-orange-directions.webp');
+    --mascot-reactions: url('/mascots/novodip-orange-reactions.webp');
   }
 
   /* Accent color themes — set via data-accent on <html> (default: orange).
      Keep the hue list in sync with AccentPicker.tsx and the init script
      in routes/__root.tsx. */
   :root[data-accent='teal'] {
+    --mascot-directions: url('/mascots/novodip-teal-directions.webp');
+    --mascot-reactions: url('/mascots/novodip-teal-reactions.webp');
     --primary: 172 66% 50%; /* #2bd4bd */
     --accent: 172 66% 50%;
     --ring: 172 66% 50%;
   }
 
   :root[data-accent='blue'] {
+    --mascot-directions: url('/mascots/novodip-blue-directions.webp');
+    --mascot-reactions: url('/mascots/novodip-blue-reactions.webp');
     --primary: 217 91% 60%; /* #3b82f6 */
     --accent: 217 91% 60%;
     --ring: 217 91% 60%;
   }
 
   :root[data-accent='yellow'] {
+    --mascot-directions: url('/mascots/novodip-yellow-directions.webp');
+    --mascot-reactions: url('/mascots/novodip-yellow-reactions.webp');
     --primary: 45 100% 55%; /* #ffc51a */
     --accent: 45 100% 55%;
     --ring: 45 100% 55%;
@@ -131,6 +140,23 @@
 }
 
 @layer components {
+  /* page-mascot 0.1 uses two inline background layers. Override only their
+     image sources so both instances follow the accent before hydration. */
+  .accent-mascot > span > span:first-child {
+    background-image: var(--mascot-directions) !important;
+  }
+
+  .accent-mascot > span > span:last-child {
+    background-image: var(--mascot-reactions) !important;
+  }
+
+  @media (max-width: 767px) {
+    .hero-mascot {
+      width: 176px !important;
+      height: 176px !important;
+    }
+  }
+
   /* mono eyebrow label used on every section header */
   .eyebrow {
     font-family: var(--font-mono);
