@@ -28,6 +28,22 @@
       "backend": "https://github.com/Novo1999/moneymate-backend"
     },
     {
+      "title": "ResumeFeed",
+      "description": "A resume feedback network — post a resume to a shared feed and get a 1-5 star rating, quick reactions, and Reddit-style threaded comments back. A Turborepo monorepo pairing a Next.js web app with an Express/TypeORM API on Supabase Auth and Postgres.",
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "Turborepo",
+        "Supabase Auth",
+        "Express",
+        "PostgreSQL"
+      ],
+      "thumbnail": "/thumbnails/resumefeed_thumbnail.png",
+      "live": "https://resumefeed-web.vercel.app/",
+      "frontend": "https://github.com/Novo1999/resume-feed",
+      "backend": ""
+    },
+    {
       "title": "Chesspacito",
       "description": "Realtime 2v2 chess — two players per side command one army, alternating turns. Runs with no backend at all: Firebase security rules referee every move, alongside seat claiming, team clocks, and a 3,800-position openings database.",
       "stack": [

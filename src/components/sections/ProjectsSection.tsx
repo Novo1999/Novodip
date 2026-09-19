@@ -318,7 +318,7 @@ const ProjectsSection = () => (
           </h2>
         </div>
         <span className="font-mono text-[13px] text-muted-foreground/70">
-          13 PROJECTS
+          14 PROJECTS
         </span>
       </div>
     </Reveal>
